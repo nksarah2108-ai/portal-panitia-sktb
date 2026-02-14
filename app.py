@@ -3,32 +3,42 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# --- CUSTOM CSS: SIDEBAR HITAM + HOVER PINK + TIADA KURUNGAN ---
+# --- CUSTOM CSS: SENJATA RAHSIA HOVER PINK ---
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); }
     .main-title { text-align: center; color: #000000 !important; font-family: 'Arial Black', sans-serif; padding: 20px; }
     
-    /* SIDEBAR - TULISAN HITAM PEKAT */
+    /* SIDEBAR STYLE */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
-    
-    /* PAKSA TULISAN JADI HITAM PEKAT */
-    [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
-        color: #000000 !important; 
-        font-weight: 800 !important; 
-        font-size: 18px !important;
-    }
-    
-    /* KESAN HOVER PINK PADA SIDEBAR (LEBIH KUAT) */
-    div[role="radiogroup"] label:hover {
-        background-color: #f8bbd0 !important;
+
+    /* GAYA BUTANG MENU KAT SIDEBAR */
+    .stButton > button {
+        width: 100%;
         border-radius: 10px;
-        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        color: #000000 !important;
+        font-weight: 800 !important;
+        font-size: 16px !important;
+        text-align: left;
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
     }
-    div[role="radiogroup"] label:hover p { 
-        color: #ad1457 !important; 
-        transform: scale(1.02);
-        transition: 0.2s;
+
+    /* KESAN HOVER PINK YANG MOON SAYANG */
+    .stButton > button:hover {
+        background-color: #f8bbd0 !important;
+        color: #ad1457 !important;
+        transform: translateX(5px);
+    }
+
+    /* TANDA BILA MENU DIPILIH */
+    .stButton > button:focus, .stButton > button:active {
+        background-color: #f8bbd0 !important;
+        color: #ad1457 !important;
+        border: 1px solid #ad1457;
     }
 
     /* KAD FAIL - TULISAN HIJAU TURQUOISE */
@@ -42,7 +52,7 @@ st.markdown("""
     }
     .card:hover { transform: scale(1.05); border: 2px solid #00ced1; }
     
-    /* DROPDOWN BAR (BIRU) */
+    /* DROPDOWN BAR */
     .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; border: 1px solid #85C1E9 !important; }
     .stExpander details summary p { 
         color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; text-align: center; margin: auto; width: 100%; 
@@ -55,26 +65,32 @@ st.markdown("""
     .color-b { background: linear-gradient(135deg, #FF8C00, #FFA500); }
     .color-c { background: linear-gradient(135deg, #800080, #9370DB); }
     .color-d { background: linear-gradient(135deg, #2E8B57, #3CB371); }
-    
-    .ref-no { font-size: 13px; opacity: 0.9; }
-    .fail-title { font-size: 20px; margin-top: 5px; }
     </style>
     """, unsafe_allow_html=True)
 
-# 2. MENU SIDEBAR (NAMA BERSIH TANPA KURUNGAN)
+# 2. MENU SIDEBAR MENGGUNAKAN BUTANG (AUTO-HOVER)
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
-    pilihan = st.radio(
-        "Pilih Panitia:",
-        ["REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", 
-         "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", 
-         "PENDIDIKAN JASMANI DAN KESIHATAN", "PSV", "PENDIDIKAN MUZIK", "BAHASA ARAB"]
-    )
+    
+    # Inisialisasi session state untuk pilihan
+    if 'pilihan' not in st.session_state:
+        st.session_state.pilihan = "REKA BENTUK DAN TEKNOLOGI"
+
+    panitias = [
+        "REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", 
+        "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", 
+        "PENDIDIKAN JASMANI DAN KESIHATAN", "PSV", "PENDIDIKAN MUZIK", "BAHASA ARAB"
+    ]
+
+    for p in panitias:
+        if st.button(f"📂 {p}"):
+            st.session_state.pilihan = p
+
+pilihan = st.session_state.pilihan
 
 # 3. DATA PAUTAN
 links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
 
-# Map pilihan ke data RBT
 if pilihan == "REKA BENTUK DAN TEKNOLOGI":
     links.update({
         "Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing",
@@ -103,7 +119,7 @@ st.markdown(f'<h1 class="main-title">📂 Portal Fail Digital Pengurusan Panitia
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.markdown('<div class="card color-a"><div class="ref-no">600-4/1/2/1</div><div class="fail-title">🔵 FAIL A</div><br>MAKLUMAT PANITIA</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card color-a">🔵 FAIL A<br>MAKLUMAT PANITIA</div>', unsafe_allow_html=True)
     with st.expander("FAIL A 👇"):
         st.markdown(f'<a class="sublink" href="{links["Carta"]}" target="_blank">👤 Carta Organisasi</a>', unsafe_allow_html=True)
         st.markdown(f'<a class="sublink" href="{links["Biodata"]}" target="_blank">📋 Biodata & Jadual Guru</a>', unsafe_allow_html=True)
@@ -112,7 +128,7 @@ with col1:
         st.markdown(f'<a class="sublink" href="{links["Kewangan"]}" target="_blank">💰 Pengurusan Kewangan</a>', unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<div class="card color-b"><div class="ref-no">600-4/1/2/2</div><div class="fail-title">🟠 FAIL B</div><br>KURIKULUM</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card color-b">🟠 FAIL B<br>KURIKULUM</div>', unsafe_allow_html=True)
     with st.expander("FAIL B 👇"):
         st.markdown(f'<a class="sublink" href="{links["Minit"]}" target="_blank">📖 Minit Mesyuarat</a>', unsafe_allow_html=True)
         st.markdown(f'<a class="sublink" href="{links["DSKP"]}" target="_blank">📚 DSKP</a>', unsafe_allow_html=True)
@@ -120,7 +136,7 @@ with col2:
         st.markdown(f'<a class="sublink" href="{links["BBM"]}" target="_blank">💻 BBM</a>', unsafe_allow_html=True)
 
 with col3:
-    st.markdown('<div class="card color-c"><div class="ref-no">600-4/1/2/3</div><div class="fail-title">🟣 FAIL C</div><br>PERANCANGAN</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card color-c">🟣 FAIL C<br>PERANCANGAN</div>', unsafe_allow_html=True)
     with st.expander("FAIL C 👇"):
         st.markdown(f'<a class="sublink" href="{links["RPT"]}" target="_blank">📅 RPT & RPH</a>', unsafe_allow_html=True)
         st.markdown(f'<a class="sublink" href="{links["Akademik"]}" target="_blank">🚀 Program Akademik</a>', unsafe_allow_html=True)
@@ -129,7 +145,7 @@ with col3:
         st.markdown(f'<a class="sublink" href="{links["PLC"]}" target="_blank">👥 Program PLC</a>', unsafe_allow_html=True)
 
 with col4:
-    st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div><div class="fail-title">🟢 FAIL D</div><br>PEPERIKSAAN</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card color-d">🟢 FAIL D<br>PEPERIKSAAN</div>', unsafe_allow_html=True)
     with st.expander("FAIL D 👇"):
         st.markdown(f'<a class="sublink" href="{links["PBD"]}" target="_blank">📊 Pelaporan PBD & UASA</a>', unsafe_allow_html=True)
         st.markdown(f'<a class="sublink" href="{links["Analisis"]}" target="_blank">📝 Analisis Peperiksaan</a>', unsafe_allow_html=True)
