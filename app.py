@@ -3,26 +3,32 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# --- CUSTOM CSS (VERSI KEMBALIKAN HOVER PINK) ---
+# --- CUSTOM CSS: SIDEBAR HITAM + HOVER PINK + TIADA KURUNGAN ---
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); }
     .main-title { text-align: center; color: #000000 !important; font-family: 'Arial Black', sans-serif; padding: 20px; }
     
-    /* SIDEBAR - TULISAN HITAM PEKAT & HOVER PINK BALIK */
+    /* SIDEBAR - TULISAN HITAM PEKAT */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
+    
+    /* PAKSA TULISAN JADI HITAM PEKAT */
     [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
-        color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
+        color: #000000 !important; 
+        font-weight: 800 !important; 
+        font-size: 18px !important;
     }
     
-    /* KESAN HOVER PINK PADA SIDEBAR */
+    /* KESAN HOVER PINK PADA SIDEBAR (LEBIH KUAT) */
+    div[role="radiogroup"] label:hover {
+        background-color: #f8bbd0 !important;
+        border-radius: 10px;
+        cursor: pointer;
+    }
     div[role="radiogroup"] label:hover p { 
         color: #ad1457 !important; 
-        background-color: #f8bbd0 !important;
-        padding: 5px 10px;
-        border-radius: 10px;
-        transform: scale(1.05); 
-        transition: 0.3s; 
+        transform: scale(1.02);
+        transition: 0.2s;
     }
 
     /* KAD FAIL - TULISAN HIJAU TURQUOISE */
@@ -55,20 +61,21 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 2. MENU SIDEBAR
+# 2. MENU SIDEBAR (NAMA BERSIH TANPA KURUNGAN)
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
     pilihan = st.radio(
         "Pilih Panitia:",
-        ["REKA BENTUK & TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", 
+        ["REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", 
          "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", 
-         "P. JASMANI & KESIHATAN", "PSV", "PENDIDIKAN MUZIK", "BAHASA ARAB"]
+         "PENDIDIKAN JASMANI DAN KESIHATAN", "PSV", "PENDIDIKAN MUZIK", "BAHASA ARAB"]
     )
 
 # 3. DATA PAUTAN
 links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
 
-if pilihan == "REKA BENTUK & TEKNOLOGI":
+# Map pilihan ke data RBT
+if pilihan == "REKA BENTUK DAN TEKNOLOGI":
     links.update({
         "Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing",
         "Biodata": "https://docs.google.com/presentation/d/18h4II0zdKX5IEZXhMRlxr89j-4CZdhRLuKdqrcR1118/edit?usp=drive_link",
