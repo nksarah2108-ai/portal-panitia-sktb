@@ -3,7 +3,7 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# --- CUSTOM CSS: SENJATA RAHSIA HOVER PINK ---
+# --- CUSTOM CSS: PAKSA HOVER PINK & TULISAN HITAM ---
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); }
@@ -12,33 +12,21 @@ st.markdown("""
     /* SIDEBAR STYLE */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
 
-    /* GAYA BUTANG MENU KAT SIDEBAR */
-    .stButton > button {
-        width: 100%;
+    /* PAKSA TULISAN SIDEBAR HITAM PEKAT */
+    [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
+        color: #000000 !important; 
+        font-weight: 800 !important; 
+        font-size: 18px !important;
+    }
+    
+    /* KESAN HOVER PINK PADA SIDEBAR - KALI NI MISTI JADI */
+    div[role="radiogroup"] label:hover {
+        background-color: #f8bbd0 !important;
         border-radius: 10px;
-        border: none;
-        background-color: transparent;
-        color: #000000 !important;
-        font-weight: 800 !important;
-        font-size: 16px !important;
-        text-align: left;
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        transition: all 0.3s ease;
+        transition: 0.3s;
     }
-
-    /* KESAN HOVER PINK YANG MOON SAYANG */
-    .stButton > button:hover {
-        background-color: #f8bbd0 !important;
-        color: #ad1457 !important;
-        transform: translateX(5px);
-    }
-
-    /* TANDA BILA MENU DIPILIH */
-    .stButton > button:focus, .stButton > button:active {
-        background-color: #f8bbd0 !important;
-        color: #ad1457 !important;
-        border: 1px solid #ad1457;
+    div[role="radiogroup"] label:hover p { 
+        color: #ad1457 !important; 
     }
 
     /* KAD FAIL - TULISAN HIJAU TURQUOISE */
@@ -68,25 +56,25 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 2. MENU SIDEBAR MENGGUNAKAN BUTANG (AUTO-HOVER)
+# 2. MENU SIDEBAR - DAH BUANG SEMUA KURUNGAN (KALI NI KOMPEM BERSIH)
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
-    
-    # Inisialisasi session state untuk pilihan
-    if 'pilihan' not in st.session_state:
-        st.session_state.pilihan = "REKA BENTUK DAN TEKNOLOGI"
-
-    panitias = [
-        "REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", 
-        "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", 
-        "PENDIDIKAN JASMANI DAN KESIHATAN", "PSV", "PENDIDIKAN MUZIK", "BAHASA ARAB"
-    ]
-
-    for p in panitias:
-        if st.button(f"📂 {p}"):
-            st.session_state.pilihan = p
-
-pilihan = st.session_state.pilihan
+    pilihan = st.radio(
+        "Pilih Panitia:",
+        [
+            "REKA BENTUK DAN TEKNOLOGI", 
+            "BAHASA MELAYU", 
+            "BAHASA INGGERIS", 
+            "MATEMATIK", 
+            "SAINS", 
+            "PENDIDIKAN ISLAM", 
+            "SEJARAH", 
+            "PENDIDIKAN JASMANI DAN KESIHATAN", 
+            "PSV", 
+            "PENDIDIKAN MUZIK", 
+            "BAHASA ARAB"
+        ]
+    )
 
 # 3. DATA PAUTAN
 links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
