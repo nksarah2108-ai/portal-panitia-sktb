@@ -3,10 +3,7 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# Link Logo Moon yang dah ditukar jadi Direct Link
-LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
-
-# --- CUSTOM CSS ---
+# --- CUSTOM CSS: TEMA ABSTRAK & PINK LEMBUT ---
 st.markdown("""
     <style>
     .stApp { 
@@ -14,25 +11,40 @@ st.markdown("""
         background-attachment: fixed;
     }
     
+    /* Gaya Tulisan Selamat Datang */
     .welcome-title {
-        text-align: center; color: #ad1457; font-family: 'Georgia', serif;
-        font-weight: bold; font-size: 45px; text-shadow: 2px 2px #f8bbd0; margin-top: 10px;
+        text-align: center;
+        color: #ad1457;
+        font-family: 'Georgia', serif;
+        font-weight: bold;
+        font-size: 45px;
+        text-shadow: 2px 2px #f8bbd0;
+        margin-top: 20px;
     }
     
     .sub-welcome {
-        text-align: center; color: #5d4037; font-size: 22px; font-weight: 800; margin-bottom: 30px;
+        text-align: center;
+        color: #5d4037;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 40px;
     }
 
+    /* Sidebar - Tulisan Hitam Pekat */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
     [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
         color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
     }
     
+    /* Hover Pink Sidebar */
     div[role="radiogroup"] label:hover {
-        background-color: #f8bbd0 !important; border-radius: 10px; transition: 0.3s;
+        background-color: #f8bbd0 !important;
+        border-radius: 10px;
+        transition: 0.3s;
     }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; }
 
+    /* Kad Fail - Tulisan Putih */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
         color: #FFFFFF !important; font-weight: bold !important; 
@@ -40,14 +52,18 @@ st.markdown("""
         justify-content: center; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
     }
     
+    /* Gaya Gambar Pentadbir */
+    .admin-frame {
+        border-radius: 50%;
+        border: 5px solid #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
     .color-a { background: linear-gradient(135deg, #008B8B, #20B2AA); }
     .color-b { background: linear-gradient(135deg, #FF8C00, #FFA500); }
     .color-c { background: linear-gradient(135deg, #800080, #9370DB); }
     .color-d { background: linear-gradient(135deg, #2E8B57, #3CB371); }
     
-    .ref-no { font-size: 13px; opacity: 1.0; color: #FFFFFF !important; margin-bottom: 5px; }
-    .fail-title { font-size: 20px; color: #FFFFFF !important; font-weight: 900; }
-
     .sublink { display: block; padding: 12px; text-decoration: none !important; color: #000000 !important; font-weight: 600; transition: 0.3s; border-radius: 10px; margin: 8px 0; }
     .sublink:hover { background-color: #fce4ec; color: #ad1457 !important; transform: translateX(10px); }
     </style>
@@ -55,8 +71,7 @@ st.markdown("""
 
 # 2. MENU SIDEBAR
 with st.sidebar:
-    st.image(LOGO_URL, width=100) # Logo kecil kat sidebar
-    st.markdown("<h2 style='color: black; margin-top: 0;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
     pilihan = st.radio(
         "Navigasi:",
         [
@@ -75,20 +90,24 @@ with st.sidebar:
         ]
     )
 
-# --- 3. LAMAN UTAMA ---
+# --- 3. LOGIK PAPARAN LAMAN UTAMA ---
 if pilihan == "🏠 LAMAN UTAMA":
-    st.markdown("<br>", unsafe_allow_html=True)
-    col_logo1, col_logo2, col_logo3 = st.columns([1.5, 1, 1.5])
+    # Logo Sekolah
+    col_logo1, col_logo2, col_logo3 = st.columns([2, 1, 2])
     with col_logo2:
-        st.image(LOGO_URL, use_container_width=True) 
+        # Masukkan URL Logo Sekolah Moon di sini
+        st.image("https://via.placeholder.com/150?text=LOGO+SKTB", width=150) 
 
     st.markdown('<div class="welcome-title">SELAMAT DATANG</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-welcome">PORTAL PENGURUSAN FAIL PANITIA SKTB 2026</div>', unsafe_allow_html=True)
     
     st.divider()
+    
+    # Bahagian Pentadbir
     st.markdown("<h3 style='text-align: center; color: #ad1457;'>👤 BARISAN PENTADBIR SKTB</h3>", unsafe_allow_html=True)
     
     col_admin1, col_admin2, col_admin3 = st.columns(3)
+    
     with col_admin1:
         st.image("https://via.placeholder.com/200?text=GPK+KURIKULUM", caption="GPK KURIKULUM")
     with col_admin2:
@@ -96,8 +115,9 @@ if pilihan == "🏠 LAMAN UTAMA":
     with col_admin3:
         st.image("https://via.placeholder.com/200?text=GPK+HEM", caption="GPK HEM")
 
-# --- 4. LAMAN PANITIA ---
+# --- 4. LOGIK PAPARAN PANITIA (RBT DAN LAIN-LAIN) ---
 else:
+    # (Kod asal panitia Moon kekal di bawah ini)
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
@@ -127,7 +147,7 @@ else:
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.markdown('<div class="card color-a"><div class="ref-no">600-4/1/2/1</div><div class="fail-title">🔵 FAIL A</div>MAKLUMAT PANITIA</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-a"><div class="ref-no">600-4/1/2/1</div>🔵 FAIL A<br>MAKLUMAT PANITIA</div>', unsafe_allow_html=True)
         with st.expander("FAIL A 👇"):
             st.markdown(f'<a class="sublink" href="{links["Carta"]}" target="_blank">👤 Carta Organisasi</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Biodata"]}" target="_blank">📋 Biodata & Jadual Guru</a>', unsafe_allow_html=True)
@@ -136,7 +156,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["Kewangan"]}" target="_blank">💰 Pengurusan Kewangan</a>', unsafe_allow_html=True)
 
     with col2:
-        st.markdown('<div class="card color-b"><div class="ref-no">600-4/1/2/2</div><div class="fail-title">🟠 FAIL B</div>KURIKULUM</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-b"><div class="ref-no">600-4/1/2/2</div>🟠 FAIL B<br>KURIKULUM</div>', unsafe_allow_html=True)
         with st.expander("FAIL B 👇"):
             st.markdown(f'<a class="sublink" href="{links["Minit"]}" target="_blank">📖 Minit Mesyuarat</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["DSKP"]}" target="_blank">📚 DSKP</a>', unsafe_allow_html=True)
@@ -144,7 +164,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["BBM"]}" target="_blank">💻 BBM</a>', unsafe_allow_html=True)
 
     with col3:
-        st.markdown('<div class="card color-c"><div class="ref-no">600-4/1/2/3</div><div class="fail-title">🟣 FAIL C</div>PERANCANGAN</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-c"><div class="ref-no">600-4/1/2/3</div>🟣 FAIL C<br>PERANCANGAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL C 👇"):
             st.markdown(f'<a class="sublink" href="{links["RPT"]}" target="_blank">📅 RPT & RPH</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Akademik"]}" target="_blank">🚀 Program Akademik</a>', unsafe_allow_html=True)
@@ -153,7 +173,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["PLC"]}" target="_blank">👥 Program PLC</a>', unsafe_allow_html=True)
 
     with col4:
-        st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div><div class="fail-title">🟢 FAIL D</div>PEPERIKSAAN</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div>🟢 FAIL D<br>PEPERIKSAAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL D 👇"):
             st.markdown(f'<a class="sublink" href="{links["PBD"]}" target="_blank">📊 Pelaporan PBD & UASA</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Analisis"]}" target="_blank">📝 Analisis Peperiksaan</a>', unsafe_allow_html=True)
