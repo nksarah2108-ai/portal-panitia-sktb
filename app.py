@@ -3,10 +3,10 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# Link Logo Moon
+# Link Logo Sekolah
 LOGO_URL = "https://drive.google.com/thumbnail?id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 
-# --- CUSTOM CSS: TENGAH KAN SEMUA & BESARKAN FONT ---
+# --- CUSTOM CSS: PAKSA SEMUA KE TENGAH (FIXED) ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -14,59 +14,58 @@ st.markdown("""
 
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); background-attachment: fixed; }
     
-    /* PAKSA SEMUA KE TENGAH (MUKA DEPAN) */
-    .welcome-container {
+    /* BLOK TENGAH MUKA DEPAN */
+    .center-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         width: 100%;
-        padding-top: 30px;
+        margin: 0 auto;
     }
 
-    /* TULISAN BERANGKAI BLINK (BESAR) */
-    .cursive-title {
+    /* LOGO BESAR TENGAH */
+    .main-logo {
+        width: 280px;
+        margin-bottom: 20px;
+    }
+
+    /* TULISAN BERANGKAI BLINK TENGAH */
+    .cursive-blink {
         font-family: 'Dancing Script', cursive;
-        font-size: 85px; /* LAGI BESAR */
+        font-size: 90px;
         color: #ad1457;
-        margin-bottom: 0px;
         animation: blink 1.5s linear infinite;
+        margin-bottom: 10px;
     }
     @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-    /* TAJUK BARIS 2 & 3 */
-    .title-2 { color: #5d4037; font-size: 35px; font-weight: 800; margin-top: 10px; }
-    .title-3 { color: #ad1457; font-size: 40px; font-weight: 900; letter-spacing: 3px; }
-
-    /* --- PORTAL PANITIA VIEW --- */
-    .portal-title { 
-        text-align: center; 
+    /* TAJUK PORTAL HITAM TENGAH */
+    .portal-text { 
         color: #000000 !important; 
-        font-family: 'Pacifico', cursive; 
-        font-size: 40px;
-        margin-bottom: 0px;
+        font-size: 35px; 
+        font-weight: 800; 
+        margin-top: 5px;
+    }
+    
+    .year-text { 
+        color: #ad1457; 
+        font-size: 45px; 
+        font-weight: 900; 
+        letter-spacing: 4px;
+        margin-top: 5px;
     }
 
-    .subject-title { 
-        text-align: center; 
-        color: #ad1457 !important; /* PINK PEKAT */
-        font-family: 'Arial Black', sans-serif; 
-        font-size: 50px;
-        text-transform: uppercase;
-        margin-top: -10px;
-        font-weight: 900;
-    }
-
-    /* SIDEBAR */
+    /* SIDEBAR STYLE */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
     [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
         color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
     }
-    div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; border-radius: 10px; transition: 0.3s; }
+    div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; border-radius: 10px; }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; }
 
-    /* KAD FAIL - TULISAN PUTIH (KEKAL) */
+    /* LAYOUT FAIL (KEKAL SEBIJI MACAM MOON NAK) */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
         color: #FFFFFF !important; font-weight: bold !important; 
@@ -80,38 +79,42 @@ st.markdown("""
     .ref-no { font-size: 13px; opacity: 1.0; color: #FFFFFF !important; margin-bottom: 5px; }
     .fail-title { font-size: 20px; color: #FFFFFF !important; font-weight: 900; }
 
-    .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; border: 1px solid #85C1E9 !important; }
-    .stExpander details summary p { color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; text-align: center; margin: auto; width: 100%; }
-    .sublink { display: block; padding: 12px; text-decoration: none !important; color: #000000 !important; font-weight: 600; transition: 0.3s; border-radius: 10px; margin: 8px 0; }
-    .sublink:hover { background-color: #fce4ec; color: #ad1457 !important; transform: translateX(10px); }
+    /* EXPANDER & LINKS */
+    .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; }
+    .stExpander details summary p { color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; }
+    .sublink { display: block; padding: 12px; text-decoration: none !important; color: #000000 !important; font-weight: 600; border-radius: 10px; margin: 8px 0; }
+    .sublink:hover { background-color: #fce4ec; color: #ad1457 !important; }
     </style>
     """, unsafe_allow_html=True)
 
 # 2. MENU SIDEBAR
 with st.sidebar:
-    st.image(LOGO_URL, width=120)
+    st.image(LOGO_URL, width=110)
     st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
     pilihan = st.radio(
         "Navigasi:",
         ["🏠 LAMAN UTAMA", "REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", "PENDIDIKAN JASMANI DAN KESIHATAN", "PENDIDIKAN SENI VISUAL", "PENDIDIKAN MUZIK", "BAHASA ARAB"]
     )
 
-# --- 3. LAMAN UTAMA ---
+# --- 3. LAMAN UTAMA (MUKA DEPAN) ---
 if pilihan == "🏠 LAMAN UTAMA":
-    st.markdown('<div class="welcome-container">', unsafe_allow_html=True)
-    st.image(LOGO_URL, width=250) # Logo pun besarkan sikit
-    st.markdown('<div class="cursive-title">Selamat Datang</div>', unsafe_allow_html=True)
-    st.markdown('<div class="title-2">PORTAL FAIL DIGITAL PENGURUSAN PANITIA</div>', unsafe_allow_html=True)
-    st.markdown('<div class="title-3">SKTB 2026</div>', unsafe_allow_html=True)
+    # Guna HTML container untuk paksa kedudukan center
+    st.markdown(f"""
+        <div class="center-wrapper">
+            <img src="{LOGO_URL}" class="main-logo">
+            <div class="cursive-blink">Selamat Datang</div>
+            <div class="portal-text">PORTAL FAIL DIGITAL PENGURUSAN PANITIA</div>
+            <div class="year-text">SKTB 2026</div>
+        </div>
+    """, unsafe_allow_html=True)
     
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
-    st.markdown("<h2 style='color: #ad1457;'>👤 BARISAN PENTADBIR SKTB</h2>", unsafe_allow_html=True)
+    st.divider()
+    st.markdown("<h2 style='text-align: center; color: #ad1457;'>👤 BARISAN PENTADBIR SKTB</h2>", unsafe_allow_html=True)
     
     col_admin1, col_admin2, col_admin3 = st.columns(3)
     with col_admin1: st.image("https://via.placeholder.com/200", caption="GPK KURIKULUM")
     with col_admin2: st.image("https://via.placeholder.com/200", caption="GURU BESAR")
     with col_admin3: st.image("https://via.placeholder.com/200", caption="GPK HEM")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # --- 4. LAMAN PANITIA ---
 else:
@@ -120,8 +123,9 @@ else:
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
         links.update({"Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing", "Biodata": "https://docs.google.com/presentation/d/18h4II0zdKX5IEZXhMRlxr89j-4CZdhRLuKdqrcR1118/edit?usp=drive_link", "Jadual_M": "https://docs.google.com/presentation/d/1vx4yASQI69Dw3WgLbHdLLIi6y6Uvwqx_cPR7jDpnEf4/edit?usp=sharing", "Enrolmen": "https://docs.google.com/spreadsheets/d/1lQLHlLLklHhZpKaVTs0D5C7PGaJOvo9g/edit?usp=drive_link", "Kewangan": "https://docs.google.com/spreadsheets/d/1DdzyEc8c0OnEY6KN9LPWsYkpdNJcBDr7oZzLLo1_9mc/edit?usp=sharing", "Minit": "https://drive.google.com/drive/folders/1KfhRHblLKPyn9VFLq0bwBEgeVPq_9PLP?usp=sharing", "DSKP": "https://drive.google.com/drive/folders/15v24g0l9KulIq14F6pwwn-I1naMaO-0S?usp=sharing", "Manual": "https://drive.google.com/drive/folders/1__aMuk0rjNRJIPgUAHhBgCYmNRpOuInJ?usp=sharing", "BBM": "https://drive.google.com/drive/folders/1AsgXDpVbDMTBOEknbRn-70czAZVUXHVJ?usp=sharing", "RPT": "https://drive.google.com/drive/folders/13ONhdCcHDgjo-pMYoMtyQUKqQc3XFGGh?usp=drive_link", "Akademik": "https://docs.google.com/presentation/d/1W_pVK4kuv4XHzJrm8Vi6IPjnqhfo7xXSVUo7n54Vflc/edit?usp=sharing", "Gantt": "https://drive.google.com/file/d/1POSqk4gZVQ3JuFhwSHmiZBezOGK0tiRr/view?usp=sharing", "Laporan": "https://drive.google.com/drive/folders/1VidiLz-pZ3WJj29p13BrVXFHly6IShKc?usp=drive_link", "PLC": "https://drive.google.com/drive/folders/1NwX9c5l7SDRPNVa3UKzz1LX1s-Ic3Ghc?usp=sharing", "PBD": "https://drive.google.com/drive/folders/1sUR2Sq6fWbZk1gGveuRX935pqWkmUIgx?usp=sharing", "Analisis": "https://drive.google.com/drive/folders/1aJspYVKRdzMMpNsYtRA1SjEOKSeWoka8?usp=drive_link", "Jadual_E": "https://drive.google.com/drive/folders/17doEPe67XPYLNcSqS-d-aGtCXjMddiDj?usp=sharing", "JSU": "https://drive.google.com/drive/folders/17swAo8ZjS9HPE1N1xNTyi9Lfw2LRzc15?usp=sharing", "Bank": "https://drive.google.com/drive/folders/17-cMG1Orr1Q5oxbUBzKShiDSuMDyv8gH?usp=sharing"})
 
-    st.markdown(f'<div class="portal-title">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="subject-title">{pilihan}</div>', unsafe_allow_html=True)
+    # TAJUK DALAM LAMAN PANITIA (BESAR & KEMAS)
+    st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:35px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align:center; color:#ad1457; font-size:50px; font-weight:900; margin-top:-15px;">{pilihan}</div>', unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
