@@ -6,7 +6,7 @@ st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 # Link Logo Sekolah
 LOGO_URL = "https://drive.google.com/thumbnail?id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 
-# --- CUSTOM CSS: KEKALKAN SEMUA & KEMBALIKAN SEMUA HOVER ---
+# --- CUSTOM CSS: BULLET BERGARIS & KEKALKAN SEMUA ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -25,10 +25,8 @@ st.markdown("""
         margin: 0 auto;
     }
 
-    /* LOGO BESAR TENGAH */
     .main-logo { width: 250px; margin-bottom: 20px; }
 
-    /* TULISAN BERANGKAI BLINK TENGAH */
     .cursive-blink {
         font-family: 'Dancing Script', cursive;
         font-size: 85px;
@@ -38,7 +36,6 @@ st.markdown("""
     }
     @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-    /* TAJUK PORTAL HITAM TENGAH */
     .portal-text { color: #000000 !important; font-size: 32px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 40px; font-weight: 900; letter-spacing: 4px; }
 
@@ -54,7 +51,7 @@ st.markdown("""
     }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; }
 
-    /* LAYOUT FAIL (KEKAL TULISAN PUTIH) */
+    /* KEKALKAN TULISAN PUTIH & LAYOUT 4 KOLUM */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
         color: #FFFFFF !important; font-weight: bold !important; 
@@ -70,7 +67,7 @@ st.markdown("""
     .ref-no { font-size: 13px; opacity: 1.0; color: #FFFFFF !important; margin-bottom: 5px; }
     .fail-title { font-size: 20px; color: #FFFFFF !important; font-weight: 900; }
 
-    /* EXPANDER & SUBLINK HOVER (KEMBALI BERFUNGSI) */
+    /* EXPANDER & SUBLINK HOVER */
     .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; }
     .stExpander details summary p { color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; }
     
@@ -89,6 +86,9 @@ st.markdown("""
         color: #ad1457 !important; 
         transform: translateX(10px); 
     }
+
+    /* TUKAR BULLET KEPADA GARISAN (CIRCLE) */
+    ul { list-style-type: circle !important; }
     </style>
     """, unsafe_allow_html=True)
 
