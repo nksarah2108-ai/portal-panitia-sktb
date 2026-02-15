@@ -6,7 +6,7 @@ st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 # Link Logo Moon
 LOGO_URL = "https://drive.google.com/thumbnail?id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 
-# --- CUSTOM CSS: TAJUK HITAM BERANGKAI + KEKAL KOD ASAL ---
+# --- CUSTOM CSS: ASINGKAN GAYA TULISAN ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -14,14 +14,25 @@ st.markdown("""
 
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); background-attachment: fixed; }
     
-    /* TAJUK UTAMA: HITAM & BERANGKAI */
-    .main-title { 
+    /* TAJUK PORTAL: BERANGKAI */
+    .portal-title { 
         text-align: center; 
         color: #000000 !important; 
         font-family: 'Pacifico', cursive; 
-        padding: 10px;
-        font-size: 45px;
+        font-size: 38px;
+        margin-bottom: 0px;
         line-height: 1.2;
+    }
+
+    /* NAMA SUBJEK: BIASA & PINK PEKAT */
+    .subject-title { 
+        text-align: center; 
+        color: #ad1457 !important; /* PINK PEKAT */
+        font-family: 'Arial Black', sans-serif; 
+        font-size: 42px;
+        text-transform: uppercase;
+        margin-top: -10px;
+        font-weight: 900;
     }
 
     /* GAYA MUKA DEPAN TENGAH */
@@ -97,7 +108,10 @@ else:
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
         links.update({"Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing", "Biodata": "https://docs.google.com/presentation/d/18h4II0zdKX5IEZXhMRlxr89j-4CZdhRLuKdqrcR1118/edit?usp=drive_link", "Jadual_M": "https://docs.google.com/presentation/d/1vx4yASQI69Dw3WgLbHdLLIi6y6Uvwqx_cPR7jDpnEf4/edit?usp=sharing", "Enrolmen": "https://docs.google.com/spreadsheets/d/1lQLHlLLklHhZpKaVTs0D5C7PGaJOvo9g/edit?usp=drive_link", "Kewangan": "https://docs.google.com/spreadsheets/d/1DdzyEc8c0OnEY6KN9LPWsYkpdNJcBDr7oZzLLo1_9mc/edit?usp=sharing", "Minit": "https://drive.google.com/drive/folders/1KfhRHblLKPyn9VFLq0bwBEgeVPq_9PLP?usp=sharing", "DSKP": "https://drive.google.com/drive/folders/15v24g0l9KulIq14F6pwwn-I1naMaO-0S?usp=sharing", "Manual": "https://drive.google.com/drive/folders/1__aMuk0rjNRJIPgUAHhBgCYmNRpOuInJ?usp=sharing", "BBM": "https://drive.google.com/drive/folders/1AsgXDpVbDMTBOEknbRn-70czAZVUXHVJ?usp=sharing", "RPT": "https://drive.google.com/drive/folders/13ONhdCcHDgjo-pMYoMtyQUKqQc3XFGGh?usp=drive_link", "Akademik": "https://docs.google.com/presentation/d/1W_pVK4kuv4XHzJrm8Vi6IPjnqhfo7xXSVUo7n54Vflc/edit?usp=sharing", "Gantt": "https://drive.google.com/file/d/1POSqk4gZVQ3JuFhwSHmiZBezOGK0tiRr/view?usp=sharing", "Laporan": "https://drive.google.com/drive/folders/1VidiLz-pZ3WJj29p13BrVXFHly6IShKc?usp=drive_link", "PLC": "https://drive.google.com/drive/folders/1NwX9c5l7SDRPNVa3UKzz1LX1s-Ic3Ghc?usp=sharing", "PBD": "https://drive.google.com/drive/folders/1sUR2Sq6fWbZk1gGveuRX935pqWkmUIgx?usp=sharing", "Analisis": "https://drive.google.com/drive/folders/1aJspYVKRdzMMpNsYtRA1SjEOKSeWoka8?usp=drive_link", "Jadual_E": "https://drive.google.com/drive/folders/17doEPe67XPYLNcSqS-d-aGtCXjMddiDj?usp=sharing", "JSU": "https://drive.google.com/drive/folders/17swAo8ZjS9HPE1N1xNTyi9Lfw2LRzc15?usp=sharing", "Bank": "https://drive.google.com/drive/folders/17-cMG1Orr1Q5oxbUBzKShiDSuMDyv8gH?usp=sharing"})
 
-    st.markdown(f'<div class="main-title">📂 Portal Fail Digital Pengurusan Panitia <br>{pilihan}</div>', unsafe_allow_html=True)
+    # BAHAGIAN TAJUK YANG DIUBAH
+    st.markdown(f'<div class="portal-title">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="subject-title">{pilihan}</div>', unsafe_allow_html=True)
+
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
