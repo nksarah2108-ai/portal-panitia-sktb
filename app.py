@@ -6,39 +6,15 @@ st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 # Link Logo Moon (Direct Link)
 LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 
-# --- CUSTOM CSS: MUKA DEPAN TENGAH + BLINK + TURQUOISE TEXT ---
+# --- CUSTOM CSS: KEKALKAN KOD ASAL MOON & TEMA PINK ---
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); background-attachment: fixed; }
     
-    /* GAYA MUKA DEPAN TENGAH */
-    .welcome-container {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    /* TULISAN BERANGKAI & BLINK */
-    .cursive-title {
-        font-family: 'Dancing Script', cursive;
-        font-size: 65px;
-        color: #ad1457;
-        margin-bottom: 0px;
-        animation: blink 1.5s linear infinite;
-    }
-
-    @keyframes blink {
-        0% { opacity: 1; }
-        50% { opacity: 0.3; }
-        100% { opacity: 1; }
-    }
-
-    .title-2 { color: #5d4037; font-size: 25px; font-weight: 800; margin-top: 10px; }
+    /* GAYA MUKA DEPAN */
+    .welcome-header { text-align: center; margin-top: 20px; }
+    .title-1 { color: #ad1457; font-family: 'Georgia', serif; font-weight: bold; font-size: 50px; margin-bottom: 0px; }
+    .title-2 { color: #5d4037; font-size: 25px; font-weight: 800; margin-top: 0px; }
     .title-3 { color: #ad1457; font-size: 28px; font-weight: 900; letter-spacing: 2px; }
 
     /* SIDEBAR - TULISAN HITAM PEKAT */
@@ -49,33 +25,24 @@ st.markdown("""
     div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; border-radius: 10px; transition: 0.3s; }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; }
 
-    /* KAD FAIL - TULISAN HIJAU TURQUOISE (IKUT REQUEST MOON) */
+    /* KAD FAIL - TULISAN PUTIH (KEKAL 4 KOLUM) */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
-        color: #00ced1 !important; /* HIJAU TURQUOISE */
-        font-weight: 900 !important; 
+        color: #FFFFFF !important; font-weight: bold !important; 
         height: 180px; display: flex; flex-direction: column; 
         justify-content: center; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-        transition: transform 0.3s; 
     }
-    .card:hover { transform: scale(1.05); border: 2px solid #00ced1; }
-    
-    /* DROPDOWN BAR */
-    .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; border: 1px solid #85C1E9 !important; }
-    .stExpander details summary p { 
-        color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; text-align: center; margin: auto; width: 100%; 
-    }
-
-    .sublink { display: block; padding: 12px; text-decoration: none !important; color: #000000 !important; font-weight: 600; transition: 0.3s; border-radius: 10px; margin: 8px 0; }
-    .sublink:hover { background-color: #fce4ec; color: #ad1457 !important; transform: translateX(10px); }
     
     .color-a { background: linear-gradient(135deg, #008B8B, #20B2AA); }
     .color-b { background: linear-gradient(135deg, #FF8C00, #FFA500); }
     .color-c { background: linear-gradient(135deg, #800080, #9370DB); }
     .color-d { background: linear-gradient(135deg, #2E8B57, #3CB371); }
     
-    .ref-no { font-size: 13px; opacity: 1.0; color: #00ced1 !important; margin-bottom: 5px; font-weight: 800; }
-    .fail-title { font-size: 22px; color: #00ced1 !important; font-weight: 900; }
+    .ref-no { font-size: 13px; opacity: 1.0; color: #FFFFFF !important; margin-bottom: 5px; }
+    .fail-title { font-size: 20px; color: #FFFFFF !important; font-weight: 900; }
+
+    .sublink { display: block; padding: 12px; text-decoration: none !important; color: #000000 !important; font-weight: 600; transition: 0.3s; border-radius: 10px; margin: 8px 0; }
+    .sublink:hover { background-color: #fce4ec; color: #ad1457 !important; transform: translateX(10px); }
     </style>
     """, unsafe_allow_html=True)
 
@@ -90,9 +57,12 @@ with st.sidebar:
 
 # --- 3. LAMAN UTAMA ---
 if pilihan == "🏠 LAMAN UTAMA":
-    st.markdown('<div class="welcome-container">', unsafe_allow_html=True)
-    st.image(LOGO_URL, width=180)
-    st.markdown('<div class="cursive-title">Selamat Datang</div>', unsafe_allow_html=True)
+    st.markdown('<div class="welcome-header">', unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1.5, 1, 1.5])
+    with col2:
+        st.image(LOGO_URL, use_container_width=True)
+    
+    st.markdown('<div class="title-1">SELAMAT DATANG</div>', unsafe_allow_html=True)
     st.markdown('<div class="title-2">PORTAL FAIL DIGITAL PENGURUSAN PANITIA</div>', unsafe_allow_html=True)
     st.markdown('<div class="title-3">SKTB 2026</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -108,7 +78,7 @@ if pilihan == "🏠 LAMAN UTAMA":
     with col_admin3:
         st.image("https://via.placeholder.com/200?text=GPK+HEM", caption="GPK HEM")
 
-# --- 4. LAMAN PANITIA ---
+# --- 4. LAMAN PANITIA (KEKALKAN LAYOUT ASAL MOON) ---
 else:
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
