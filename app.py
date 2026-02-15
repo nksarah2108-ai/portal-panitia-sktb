@@ -3,7 +3,7 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# --- CUSTOM CSS: BALIK ASAL TULISAN PUTIH & TIADA KURUNGAN ---
+# --- CUSTOM CSS: KEKALKAN SEMUA GAYA PILIHAN MOON ---
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); }
@@ -23,10 +23,10 @@ st.markdown("""
     }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; }
 
-    /* KAD FAIL - TULISAN PUTIH (ASAL) */
+    /* KAD FAIL - TULISAN PUTIH (KEKAL) */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
-        color: #FFFFFF !important; /* TULISAN PUTIH BALIK */
+        color: #FFFFFF !important; 
         font-weight: bold !important; 
         height: 180px; display: flex; flex-direction: column; 
         justify-content: center; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
@@ -53,7 +53,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 2. MENU SIDEBAR (DAH BUANG KURUNGAN)
+# 2. MENU SIDEBAR (NAMA PANITIA SENI VISUAL DIKEMASKINI)
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
     pilihan = st.radio(
@@ -67,7 +67,7 @@ with st.sidebar:
             "PENDIDIKAN ISLAM", 
             "SEJARAH", 
             "PENDIDIKAN JASMANI DAN KESIHATAN", 
-            "PSV", 
+            "PENDIDIKAN SENI VISUAL", 
             "PENDIDIKAN MUZIK", 
             "BAHASA ARAB"
         ]
