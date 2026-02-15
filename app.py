@@ -6,7 +6,7 @@ st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 # Link Logo Sekolah
 LOGO_URL = "https://drive.google.com/thumbnail?id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 
-# --- CUSTOM CSS: KEMBALIKAN SEMUA HOVER & KEKALKAN LAYOUT ---
+# --- CUSTOM CSS: KEKALKAN SEMUA & KEMBALIKAN SEMUA HOVER ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -19,14 +19,16 @@ st.markdown("""
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify(content: center;
+        justify-content: center;
         text-align: center;
         width: 100%;
         margin: 0 auto;
     }
 
+    /* LOGO BESAR TENGAH */
     .main-logo { width: 250px; margin-bottom: 20px; }
 
+    /* TULISAN BERANGKAI BLINK TENGAH */
     .cursive-blink {
         font-family: 'Dancing Script', cursive;
         font-size: 85px;
@@ -36,10 +38,11 @@ st.markdown("""
     }
     @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
+    /* TAJUK PORTAL HITAM TENGAH */
     .portal-text { color: #000000 !important; font-size: 32px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 40px; font-weight: 900; letter-spacing: 4px; }
 
-    /* SIDEBAR STYLE & HOVER */
+    /* SIDEBAR STYLE & HOVER PINK */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
     [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
         color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
@@ -51,13 +54,15 @@ st.markdown("""
     }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; }
 
-    /* LAYOUT FAIL (TULISAN PUTIH) */
+    /* LAYOUT FAIL (KEKAL TULISAN PUTIH) */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
         color: #FFFFFF !important; font-weight: bold !important; 
         height: 180px; display: flex; flex-direction: column; 
         justify-content: center; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        transition: transform 0.3s;
     }
+    .card:hover { transform: scale(1.05); border: 2px solid #FFFFFF; }
     .color-a { background: linear-gradient(135deg, #008B8B, #20B2AA); }
     .color-b { background: linear-gradient(135deg, #FF8C00, #FFA500); }
     .color-c { background: linear-gradient(135deg, #800080, #9370DB); }
@@ -65,7 +70,7 @@ st.markdown("""
     .ref-no { font-size: 13px; opacity: 1.0; color: #FFFFFF !important; margin-bottom: 5px; }
     .fail-title { font-size: 20px; color: #FFFFFF !important; font-weight: 900; }
 
-    /* EXPANDER & HOVER PADA SUBLINK (PENTING!) */
+    /* EXPANDER & SUBLINK HOVER (KEMBALI BERFUNGSI) */
     .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; }
     .stExpander details summary p { color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; }
     
@@ -79,12 +84,10 @@ st.markdown("""
         margin: 8px 0; 
         transition: 0.3s;
     }
-    
-    /* HOVER PINK PADA SUBLINK KEMBALI! */
     .sublink:hover { 
         background-color: #fce4ec !important; 
         color: #ad1457 !important; 
-        transform: translateX(10px); /* Efek slide sikit */
+        transform: translateX(10px); 
     }
     </style>
     """, unsafe_allow_html=True)
@@ -108,8 +111,10 @@ if pilihan == "🏠 LAMAN UTAMA":
             <div class="year-text">SKTB 2026</div>
         </div>
     """, unsafe_allow_html=True)
+    
     st.divider()
     st.markdown("<h2 style='text-align: center; color: #ad1457;'>👤 BARISAN PENTADBIR SKTB</h2>", unsafe_allow_html=True)
+    
     col_admin1, col_admin2, col_admin3 = st.columns(3)
     with col_admin1: st.image("https://via.placeholder.com/200", caption="GPK KURIKULUM")
     with col_admin2: st.image("https://via.placeholder.com/200", caption="GURU BESAR")
