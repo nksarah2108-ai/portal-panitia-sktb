@@ -53,7 +53,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 2. MENU SIDEBAR (DAH BUANG KURUNGAN)
+# 2. MENU SIDEBAR (DAH BUANG KURUNGAN + SENI VISUAL)
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
     pilihan = st.radio(
@@ -67,7 +67,7 @@ with st.sidebar:
             "PENDIDIKAN ISLAM", 
             "SEJARAH", 
             "PENDIDIKAN JASMANI DAN KESIHATAN", 
-            "PSV", 
+            "PENDIDIKAN SENI VISUAL", 
             "PENDIDIKAN MUZIK", 
             "BAHASA ARAB"
         ]
