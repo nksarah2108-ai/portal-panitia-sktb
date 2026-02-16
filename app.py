@@ -3,15 +3,24 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# LINK GAMBAR
+# LINK GAMBAR ASAL
 LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 PENTADBIR_URL = "https://lh3.googleusercontent.com/d/1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
-# --- FUNGSI TUKAR URL DRIVE KE DIRECT LINK ---
-def get_drive_direct_link(url):
+# --- FUNGSI FIX LINK GOOGLE DRIVE (PENTING!) ---
+def fix_drive_url(url):
     if "drive.google.com" in url:
-        file_id = url.split('/')[-2]
-        return f"https://drive.google.com/uc?export=view&id={file_id}"
+        # Mengambil ID fail dari URL Drive
+        try:
+            if "/file/d/" in url:
+                file_id = url.split("/file/d/")[1].split("/")[0]
+            elif "id=" in url:
+                file_id = url.split("id=")[1].split("&")[0]
+            else:
+                return url
+            return f"https://lh3.googleusercontent.com/u/0/d/{file_id}"
+        except:
+            return url
     return url
 
 # --- CUSTOM CSS ---
@@ -30,25 +39,33 @@ st.markdown("""
         font-size: 50px;
         font-weight: 900;
         animation: blinker 3s linear infinite;
-        line-height: 1.1;
-        margin-top: 20px;
+        line-height: 1.2;
+        margin-top: 15px;
+        text-align: left;
     }
 
     .cursive-blink { font-family: 'Dancing Script', cursive; font-size: 95px; color: #ad1457; animation: blinker 3s linear infinite; margin-bottom: 0px; }
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; }
     
-    /* GAYA GAMBAR KETUA PANITIA BULAT */
+    /* GAYA GAMBAR KETUA PANITIA */
+    .head-img-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 20px;
+    }
+    
     .head-img {
-        width: 130px;
-        height: 130px;
+        width: 150px;
+        height: 150px;
         border-radius: 50%;
-        border: 5px solid #ad1457;
+        border: 6px solid #ad1457;
         object-fit: cover;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    /* SIDEBAR STYLE - PAKSA HITAM */
+    /* SIDEBAR STYLE */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
     [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, div[role="radiogroup"] label p {
         color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
@@ -96,11 +113,13 @@ if pilihan == "🏠 LAMAN UTAMA":
 # --- 4. LAMAN PANITIA ---
 else:
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
-    KP_IMAGE = None
+    KP_IMAGE_URL = None
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        # URL GAMBAR KP RBT (SUDAH DIPROSES)
-        KP_IMAGE = get_drive_direct_link("https://drive.google.com/file/d/1y7ftH_D52ucbpA4s5iba141527zg9Ez6/view?usp=sharing")
+        # MASUKKAN LINK DRIVE KP RBT DI SINI
+        raw_url = "https://drive.google.com/file/d/1y7ftH_D52ucbpA4s5iba141527zg9Ez6/view?usp=sharing"
+        KP_IMAGE_URL = fix_drive_url(raw_url)
+        
         links.update({
             "Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing",
             "Biodata": "https://docs.google.com/presentation/d/18h4II0zdKX5IEZXhMRlxr89j-4CZdhRLuKdqrcR1118/edit?usp=drive_link",
@@ -125,11 +144,11 @@ else:
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     
-    # SUSUNAN GAMBAR KETUA DAN TAJUK BERSEBELAHAN
-    h_col1, h_col2 = st.columns([1, 4])
+    # SUSUNAN GAMBAR KETUA DAN TAJUK
+    h_col1, h_col2 = st.columns([1.5, 3.5])
     with h_col1:
-        if KP_IMAGE:
-            st.markdown(f'<div style="text-align: right;"><img src="{KP_IMAGE}" class="head-img"></div>', unsafe_allow_html=True)
+        if KP_IMAGE_URL:
+            st.markdown(f'<div class="head-img-container"><img src="{KP_IMAGE_URL}" class="head-img"></div>', unsafe_allow_html=True)
     with h_col2:
         st.markdown(f'<div class="subject-title-blink">{pilihan}</div>', unsafe_allow_html=True)
 
