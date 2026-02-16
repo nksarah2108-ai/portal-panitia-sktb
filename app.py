@@ -3,14 +3,14 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# LINK GAMBAR ASAL
+# LINK GAMBAR ASAL (LOGO & PENTADBIR)
 LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 PENTADBIR_URL = "https://lh3.googleusercontent.com/d/1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
 # --- FUNGSI FIX LINK GOOGLE DRIVE (PENTING!) ---
+# Fungsi ini menukar link 'view' Drive kepada link imej yang boleh dipaparkan
 def fix_drive_url(url):
     if "drive.google.com" in url:
-        # Mengambil ID fail dari URL Drive
         try:
             if "/file/d/" in url:
                 file_id = url.split("/file/d/")[1].split("/")[0]
@@ -18,7 +18,8 @@ def fix_drive_url(url):
                 file_id = url.split("id=")[1].split("&")[0]
             else:
                 return url
-            return f"https://lh3.googleusercontent.com/u/0/d/{file_id}"
+            # Menggunakan endpoint thumbnail/preview untuk paparan imej yang stabil
+            return f"https://drive.google.com/thumbnail?id={file_id}&sz=w800"
         except:
             return url
     return url
@@ -57,8 +58,8 @@ st.markdown("""
     }
     
     .head-img {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
         border-radius: 50%;
         border: 6px solid #ad1457;
         object-fit: cover;
@@ -112,12 +113,13 @@ if pilihan == "🏠 LAMAN UTAMA":
 
 # --- 4. LAMAN PANITIA ---
 else:
+    # Set default link
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     KP_IMAGE_URL = None
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        # MASUKKAN LINK DRIVE KP RBT DI SINI
-        raw_url = "https://drive.google.com/file/d/1y7ftH_D52ucbpA4s5iba141527zg9Ez6/view?usp=sharing"
+        # --- URL GAMBAR KETUA PANITIA RBT YANG TELAH DIKEMASKINI ---
+        raw_url = "https://drive.google.com/file/d/1MNlOa_SPMZjKbXPugpswaf6DuzHncMrj/view?usp=drive_link"
         KP_IMAGE_URL = fix_drive_url(raw_url)
         
         links.update({
