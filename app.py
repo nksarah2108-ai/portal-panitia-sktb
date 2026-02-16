@@ -42,8 +42,6 @@ st.markdown("""
     }
     
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
-    
-    /* CSS UNTUK TULISAN TAHUN/NAMA SEKOLAH */
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; }
     
     /* SIDEBAR STYLE - PAKSA HITAM */
@@ -102,7 +100,6 @@ if pilihan == "🏠 LAMAN UTAMA":
 
 # --- 4. LAMAN PANITIA ---
 else:
-    # (Bahagian ini kekal seperti kod RBT yang kita buat sebelum ini)
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
@@ -159,7 +156,8 @@ else:
         st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div><div class="fail-title">🟢 FAIL D</div>PEPERIKSAAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL D 👇"):
             st.markdown(f'<a class="sublink" href="{links["PBD"]}" target="_blank">📊 Pelaporan PBD & UASA</a>', unsafe_allow_html=True)
-            st.markdown(f'<a class="sublink" href="{links["Analisis"]}" target="_blank">📈 Analisis Peperiksaan</a>', unsafe_allow_html=True)
+            # PERUBAHAN NAMA DI SINI
+            st.markdown(f'<a class="sublink" href="{links["Analisis"]}" target="_blank">📈 Analisis Peperiksaan Awam</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Jadual_E"]}" target="_blank">🕒 Jadual & Penggubal</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["JSU"]}" target="_blank">📑 Analisis Item & JSU</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Bank"]}" target="_blank">🏦 Bank Soalan</a>', unsafe_allow_html=True)
