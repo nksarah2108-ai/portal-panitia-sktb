@@ -4,10 +4,11 @@ import streamlit as st
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
 # LINK GAMBAR HD (FORMAT UC UNTUK STABILITI)
+# Pastikan fail di Google Drive di-set kepada "Anyone with the link can view"
 LOGO_URL = "https://drive.google.com/uc?export=view&id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 PENTADBIR_URL = "https://drive.google.com/uc?export=view&id=1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
-# --- CUSTOM CSS: KUNCI MATI LAYOUT CANTIK MOON ---
+# --- CUSTOM CSS: KUNCI MATI LAYOUT ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -15,7 +16,7 @@ st.markdown("""
 
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); background-attachment: fixed; }
     
-    /* SIDEBAR STYLE & HOVER */
+    /* SIDEBAR STYLE */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
     [data-testid="stSidebar"] li::marker { content: "—  " !important; color: #ad1457 !important; }
     [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
@@ -39,7 +40,7 @@ st.markdown("""
     .portal-title-black { text-align: center; color: #000000 !important; font-family: 'Pacifico', cursive; font-size: 38px; margin-bottom: 0px; }
     .subject-title-pink { text-align: center; color: #ad1457 !important; font-family: 'Arial Black', sans-serif; font-size: 55px; font-weight: 900; text-transform: uppercase; margin-top: -15px; }
 
-    /* KAD FAIL (TULISAN PUTIH KEMBALI!) */
+    /* KAD FAIL (TULISAN PUTIH KEKAL) */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
         color: #FFFFFF !important; font-weight: bold !important; 
@@ -54,9 +55,7 @@ st.markdown("""
     .ref-no { font-size: 13px; color: #FFFFFF !important; margin-bottom: 5px; font-weight: 800; }
     .fail-title { font-size: 22px; color: #FFFFFF !important; font-weight: 900; }
 
-    /* EXPANDER & SUBLINK HOVER */
-    .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; }
-    .stExpander details summary p { color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; }
+    /* SUBLINK HOVER */
     .sublink { display: block; padding: 12px; text-decoration: none !important; color: #000000 !important; font-weight: 600; border-radius: 10px; margin: 8px 0; transition: 0.3s; }
     .sublink:hover { background-color: #fce4ec !important; color: #ad1457 !important; transform: translateX(10px); }
     </style>
@@ -64,6 +63,7 @@ st.markdown("""
 
 # 2. MENU SIDEBAR
 with st.sidebar:
+    # Guna st.image untuk lebih stabil
     st.image(LOGO_URL, width=100)
     st.markdown("<h2 style='text-align: center; color: black; margin-top: 0;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
     pilihan = st.radio(
@@ -73,19 +73,17 @@ with st.sidebar:
 
 # --- 3. LAMAN UTAMA (MUKA DEPAN) ---
 if pilihan == "🏠 LAMAN UTAMA":
-    st.markdown(f"""
-        <div class="center-wrapper">
-            <img src="{LOGO_URL}" width="220">
-            <div class="cursive-blink">Selamat Datang</div>
-            <div style="color:black; font-size:32px; font-weight:800; margin-top:10px;">PORTAL FAIL DIGITAL PENGURUSAN PANITIA</div>
-            <div style="color:#ad1457; font-size:40px; font-weight:900; letter-spacing:4px; margin-bottom:30px;">SKTB 2026</div>
-            <img src="{PENTADBIR_URL}" style="width:85%; max-width:900px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.15); border:5px solid #ffffff;">
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="center-wrapper">', unsafe_allow_html=True)
+    st.image(LOGO_URL, width=220)
+    st.markdown('<div class="cursive-blink">Selamat Datang</div>', unsafe_allow_html=True)
+    st.markdown('<div style="color:black; font-size:32px; font-weight:800; margin-top:10px;">PORTAL FAIL DIGITAL PENGURUSAN PANITIA</div>', unsafe_allow_html=True)
+    st.markdown('<div style="color:#ad1457; font-size:40px; font-weight:900; letter-spacing:4px; margin-bottom:30px;">SKTB 2026</div>', unsafe_allow_html=True)
+    st.image(PENTADBIR_URL, width=850)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # --- 4. LAMAN PANITIA ---
 else:
-    # KEKALKAN SEMUA LINK SUBTOPIK
+    # KEKALKAN SEMUA LINK SUBTOPIK RBT
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
@@ -111,7 +109,7 @@ else:
             "Bank": "https://drive.google.com/drive/folders/17-cMG1Orr1Q5oxbUBzKShiDSuMDyv8gH?usp=sharing"
         })
 
-    st.markdown(f'<div class="portal-title-cursive">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="portal-title-black">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     st.markdown(f'<div class="subject-title-pink">{pilihan}</div>', unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
