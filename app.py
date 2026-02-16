@@ -17,22 +17,30 @@ st.markdown("""
     
     .super-center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; margin: 0 auto; }
     
-    /* ANIMASI BERKELIP (BLINK) */
+    /* ANIMASI BERKELIP (BLINK) YANG LEBIH PERLAHAN */
     @keyframes blinker {
-        50% { opacity: 0; }
+        0% { opacity: 1; }
+        50% { opacity: 0.2; }
+        100% { opacity: 1; }
     }
 
-    /* KELAS KHUSUS UNTUK TAJUK SUBJEK BERKELIP */
+    /* KELAS KHUSUS UNTUK TAJUK SUBJEK - KELAJUAN DITETAPKAN PADA 3 SAAT */
     .subject-title-blink {
         text-align: center;
         color: #ad1457;
         font-size: 55px;
         font-weight: 900;
         margin-top: -15px;
-        animation: blinker 1s linear infinite; /* Kelajuan 1 saat */
+        animation: blinker 3s linear infinite; /* Diubah dari 1s ke 3s supaya lebih perlahan */
     }
 
-    .cursive-blink { font-family: 'Dancing Script', cursive; font-size: 95px; color: #ad1457; animation: blinker 1.5s linear infinite; margin-bottom: 0px; }
+    .cursive-blink { 
+        font-family: 'Dancing Script', cursive; 
+        font-size: 95px; 
+        color: #ad1457; 
+        animation: blinker 3s linear infinite; /* Perlahankan juga di Laman Utama */
+        margin-bottom: 0px; 
+    }
     
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 4px; margin-bottom: 30px; }
@@ -85,7 +93,6 @@ if pilihan == "🏠 LAMAN UTAMA":
 else:
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
-    # PAUTAN RBT
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
         links.update({
             "Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing",
@@ -110,8 +117,6 @@ else:
         })
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:35px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
-    
-    # TAJUK SUBJEK BERKELIP DI SINI
     st.markdown(f'<div class="subject-title-blink">{pilihan}</div>', unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
