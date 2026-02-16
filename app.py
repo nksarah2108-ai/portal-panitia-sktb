@@ -17,7 +17,7 @@ st.markdown("""
     
     .super-center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; margin: 0 auto; }
     
-    /* ANIMASI BERKELIP (BLINK) */
+    /* ANIMASI BERKELIP (BLINK) PERLAHAN */
     @keyframes blinker {
         0% { opacity: 1; }
         50% { opacity: 0.2; }
@@ -42,12 +42,12 @@ st.markdown("""
     }
     
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
-    .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 4px; margin-bottom: 30px; }
     
-    /* SIDEBAR STYLE */
+    /* CSS UNTUK TULISAN TAHUN/NAMA SEKOLAH */
+    .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; }
+    
+    /* SIDEBAR STYLE - PAKSA HITAM */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
-    
-    /* FIX: PAKSA TULISAN SIDEBAR KEKAL HITAM */
     [data-testid="stSidebar"] .st-emotion-cache-17l69qg, 
     [data-testid="stSidebar"] p, 
     [data-testid="stSidebar"] span,
@@ -57,7 +57,7 @@ st.markdown("""
         font-size: 18px !important;
     }
 
-    /* KESAN HOVER PADA SIDEBAR */
+    /* KESAN HOVER SIDEBAR */
     div[role="radiogroup"] label { padding: 10px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
     div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; transform: translateX(5px); }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; font-weight: 900 !important; }
@@ -95,13 +95,14 @@ if pilihan == "🏠 LAMAN UTAMA":
             <img src="{LOGO_URL}" width="220">
             <div class="cursive-blink">Selamat Datang</div>
             <div class="portal-text">PORTAL FAIL DIGITAL PENGURUSAN PANITIA</div>
-            <div class="year-text">SKTB 2026</div>
+            <div class="year-text">SEK. KEB. TELOK BEREMBANG 2026</div>
             <img src="{PENTADBIR_URL}" class="admin-img-box">
         </div>
     """, unsafe_allow_html=True)
 
 # --- 4. LAMAN PANITIA ---
 else:
+    # (Bahagian ini kekal seperti kod RBT yang kita buat sebelum ini)
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
@@ -164,4 +165,4 @@ else:
             st.markdown(f'<a class="sublink" href="{links["Bank"]}" target="_blank">🏦 Bank Soalan</a>', unsafe_allow_html=True)
 
     st.divider()
-    st.markdown(f'<p style="text-align: center; color: black; font-weight: bold;">Portal Panitia {pilihan} - SKTB 2026</p>', unsafe_allow_html=True)
+    st.markdown(f'<p style="text-align: center; color: black; font-weight: bold;">Portal Panitia {pilihan} - SEK. KEB. TELOK BEREMBANG 2026</p>', unsafe_allow_html=True)
