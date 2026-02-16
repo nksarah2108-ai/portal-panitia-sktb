@@ -103,29 +103,48 @@ if pilihan == "🏠 LAMAN UTAMA":
 
 # --- 4. LAMAN PANITIA ---
 else:
+    # Kesemua 19 subtopik mengikut senarai anda
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:35px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     st.markdown(f'<div style="text-align:center; color:#ad1457; font-size:55px; font-weight:900; margin-top:-15px;">{pilihan}</div>', unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
+    
     with col1:
         st.markdown('<div class="card color-a"><div class="ref-no">600-4/1/2/1</div><div class="fail-title">🔵 FAIL A</div>MAKLUMAT PANITIA</div>', unsafe_allow_html=True)
         with st.expander("FAIL A 👇"):
             st.markdown(f'<a class="sublink" href="{links["Carta"]}" target="_blank">👤 Carta Organisasi</a>', unsafe_allow_html=True)
-            st.markdown(f'<a class="sublink" href="{links["Biodata"]}" target="_blank">📋 Biodata & Jadual Guru</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Biodata"]}" target="_blank">📋 Biodata Guru</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Jadual_M"]}" target="_blank">📅 Jadual Waktu Peribadi</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Enrolmen"]}" target="_blank">👥 Enrolmen Murid</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Kewangan"]}" target="_blank">💰 Anggaran Belanja Mengurus</a>', unsafe_allow_html=True)
+
     with col2:
         st.markdown('<div class="card color-b"><div class="ref-no">600-4/1/2/2</div><div class="fail-title">🟠 FAIL B</div>KURIKULUM</div>', unsafe_allow_html=True)
         with st.expander("FAIL B 👇"):
             st.markdown(f'<a class="sublink" href="{links["Minit"]}" target="_blank">📖 Minit Mesyuarat</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["DSKP"]}" target="_blank">📜 DSKP KSSR</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Manual"]}" target="_blank">📘 Manual Kerja Panitia</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["BBM"]}" target="_blank">📦 Senarai BBM / ABM</a>', unsafe_allow_html=True)
+
     with col3:
         st.markdown('<div class="card color-c"><div class="ref-no">600-4/1/2/3</div><div class="fail-title">🟣 FAIL C</div>PERANCANGAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL C 👇"):
             st.markdown(f'<a class="sublink" href="{links["RPT"]}" target="_blank">📅 RPT & RPH</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Akademik"]}" target="_blank">🏆 Perancangan Strategik</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Gantt"]}" target="_blank">📊 Carta Gantt Aktiviti</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Laporan"]}" target="_blank">📝 Laporan Program</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["PLC"]}" target="_blank">🤝 Rekod PLC Panitia</a>', unsafe_allow_html=True)
+
     with col4:
         st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div><div class="fail-title">🟢 FAIL D</div>PEPERIKSAAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL D 👇"):
             st.markdown(f'<a class="sublink" href="{links["PBD"]}" target="_blank">📊 Pelaporan PBD & UASA</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Analisis"]}" target="_blank">📈 Analisis Pencapaian</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Jadual_E"]}" target="_blank">🕒 Jadual Peperiksaan</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["JSU"]}" target="_blank">📑 JSU / JSI</a>', unsafe_allow_html=True)
+            st.markdown(f'<a class="sublink" href="{links["Bank"]}" target="_blank">🏦 Bank Soalan</a>', unsafe_allow_html=True)
 
     st.divider()
     st.markdown(f'<p style="text-align: center; color: black; font-weight: bold;">Portal Panitia {pilihan} - SKTB 2026</p>', unsafe_allow_html=True)
