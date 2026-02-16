@@ -3,11 +3,11 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# LINK GAMBAR (HD DIRECT LINKS)
-LOGO_URL = "https://drive.google.com/uc?export=view&id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
-PENTADBIR_URL = "https://drive.google.com/uc?export=view&id=1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
+# LINK GAMBAR (FORMAT STABIL UNTUK STREAMLIT)
+LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
+PENTADBIR_URL = "https://lh3.googleusercontent.com/d/1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
-# --- CUSTOM CSS: HD & SUPER CENTER ---
+# --- CUSTOM CSS: FIX GAMBAR & KEKALKAN LAYOUT ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -39,9 +39,9 @@ st.markdown("""
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 4px; margin-bottom: 30px; }
 
-    /* GAMBAR PENTADBIR HD */
-    .admin-img {
-        width: 85%;
+    /* GAMBAR PENTADBIR HD (FLEXIBLE SIZE) */
+    .admin-img-box {
+        width: 100%;
         max-width: 1000px;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -89,7 +89,7 @@ with st.sidebar:
         ["🏠 LAMAN UTAMA", "REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", "PENDIDIKAN JASMANI DAN KESIHATAN", "PENDIDIKAN SENI VISUAL", "PENDIDIKAN MUZIK", "BAHASA ARAB"]
     )
 
-# --- 3. LAMAN UTAMA (MUKA DEPAN) ---
+# --- 3. LAMAN UTAMA ---
 if pilihan == "🏠 LAMAN UTAMA":
     st.markdown(f"""
         <div class="super-center">
@@ -97,7 +97,7 @@ if pilihan == "🏠 LAMAN UTAMA":
             <div class="cursive-blink">Selamat Datang</div>
             <div class="portal-text">PORTAL FAIL DIGITAL PENGURUSAN PANITIA</div>
             <div class="year-text">SKTB 2026</div>
-            <img src="{PENTADBIR_URL}" class="admin-img">
+            <img src="{PENTADBIR_URL}" class="admin-img-box">
         </div>
     """, unsafe_allow_html=True)
 
@@ -105,7 +105,6 @@ if pilihan == "🏠 LAMAN UTAMA":
 else:
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
-    # Tajuk Laman Panitia
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:35px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     st.markdown(f'<div style="text-align:center; color:#ad1457; font-size:55px; font-weight:900; margin-top:-15px;">{pilihan}</div>', unsafe_allow_html=True)
 
