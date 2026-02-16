@@ -8,7 +8,6 @@ LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWr
 PENTADBIR_URL = "https://lh3.googleusercontent.com/d/1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
 # --- FUNGSI FIX LINK GOOGLE DRIVE (PENTING!) ---
-# Fungsi ini menukar link 'view' Drive kepada link imej yang boleh dipaparkan
 def fix_drive_url(url):
     if "drive.google.com" in url:
         try:
@@ -18,7 +17,7 @@ def fix_drive_url(url):
                 file_id = url.split("id=")[1].split("&")[0]
             else:
                 return url
-            # Menggunakan endpoint thumbnail/preview untuk paparan imej yang stabil
+            # Menggunakan endpoint thumbnail untuk paparan imej yang stabil di Streamlit
             return f"https://drive.google.com/thumbnail?id={file_id}&sz=w800"
         except:
             return url
@@ -113,13 +112,12 @@ if pilihan == "🏠 LAMAN UTAMA":
 
 # --- 4. LAMAN PANITIA ---
 else:
-    # Set default link
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     KP_IMAGE_URL = None
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        # --- URL GAMBAR KETUA PANITIA RBT YANG TELAH DIKEMASKINI ---
-        raw_url = "https://drive.google.com/file/d/1MNlOa_SPMZjKbXPugpswaf6DuzHncMrj/view?usp=drive_link"
+        # --- URL GAMBAR BARU DENGAN BACKGROUND PINK ---
+        raw_url = "https://drive.google.com/file/d/1ud6j-u5mxizea8z4rhonnPklDqT09rPa/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url)
         
         links.update({
@@ -146,7 +144,6 @@ else:
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     
-    # SUSUNAN GAMBAR KETUA DAN TAJUK
     h_col1, h_col2 = st.columns([1.5, 3.5])
     with h_col1:
         if KP_IMAGE_URL:
