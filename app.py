@@ -3,11 +3,11 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# LINK GAMBAR (FORMAT HD UNTUK STREAMLIT)
+# LINK GAMBAR HD (GUNA FORMAT UC UNTUK STABILITI)
 LOGO_URL = "https://drive.google.com/uc?export=view&id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 PENTADBIR_URL = "https://drive.google.com/uc?export=view&id=1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
-# --- CUSTOM CSS: KUNCI MATI SEMUA DESIGN ELOK ---
+# --- CUSTOM CSS: KUNCI MATI LAYOUT CANTIK MOON ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -24,8 +24,11 @@ st.markdown("""
     div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; border-radius: 10px; transition: 0.3s; }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; }
 
-    /* MUKA DEPAN (CENTER) */
-    .center-wrapper { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; margin: 0 auto; }
+    /* MUKA DEPAN (SUPER CENTER) */
+    .center-wrapper { 
+        display: flex; flex-direction: column; align-items: center; 
+        justify-content: center; text-align: center; width: 100%; margin: 0 auto; 
+    }
     .cursive-blink {
         font-family: 'Dancing Script', cursive; font-size: 85px; color: #ad1457;
         animation: blink 1.5s linear infinite; margin-bottom: 0px;
@@ -62,7 +65,7 @@ st.markdown("""
 # 2. MENU SIDEBAR
 with st.sidebar:
     st.image(LOGO_URL, width=100)
-    st.markdown("<h2 style='text-align: center; color: black;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: black; margin-top: 0;'>🌸 MENU SKTB</h2>", unsafe_allow_html=True)
     pilihan = st.radio(
         "Navigasi:",
         ["🏠 LAMAN UTAMA", "REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", "PENDIDIKAN JASMANI DAN KESIHATAN", "PENDIDIKAN SENI VISUAL", "PENDIDIKAN MUZIK", "BAHASA ARAB"]
@@ -82,7 +85,7 @@ if pilihan == "🏠 LAMAN UTAMA":
 
 # --- 4. LAMAN PANITIA ---
 else:
-    # DATA PAUTAN UNTUK RBT
+    # KEKALKAN SEMUA LINK SUBTOPIK
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
