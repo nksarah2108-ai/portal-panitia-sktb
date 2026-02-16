@@ -7,6 +7,13 @@ st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 PENTADBIR_URL = "https://lh3.googleusercontent.com/d/1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
+# --- FUNGSI TUKAR URL DRIVE KE DIRECT LINK ---
+def get_drive_direct_link(url):
+    if "drive.google.com" in url:
+        file_id = url.split('/')[-2]
+        return f"https://drive.google.com/uc?export=view&id={file_id}"
+    return url
+
 # --- CUSTOM CSS ---
 st.markdown("""
     <style>
@@ -14,49 +21,38 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
     
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); background-attachment: fixed; }
-    
     .super-center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; margin: 0 auto; }
     
-    /* ANIMASI BERKELIP (BLINK) PERLAHAN */
-    @keyframes blinker {
-        0% { opacity: 1; }
-        50% { opacity: 0.2; }
-        100% { opacity: 1; }
-    }
+    @keyframes blinker { 0% { opacity: 1; } 50% { opacity: 0.2; } 100% { opacity: 1; } }
 
     .subject-title-blink {
-        text-align: center;
         color: #ad1457;
-        font-size: 55px;
+        font-size: 50px;
         font-weight: 900;
-        margin-top: -15px;
         animation: blinker 3s linear infinite;
+        line-height: 1.1;
+        margin-top: 20px;
     }
 
-    .cursive-blink { 
-        font-family: 'Dancing Script', cursive; 
-        font-size: 95px; 
-        color: #ad1457; 
-        animation: blinker 3s linear infinite;
-        margin-bottom: 0px; 
-    }
-    
+    .cursive-blink { font-family: 'Dancing Script', cursive; font-size: 95px; color: #ad1457; animation: blinker 3s linear infinite; margin-bottom: 0px; }
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; }
     
-    /* SIDEBAR STYLE - PAKSA HITAM */
-    [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
-    [data-testid="stSidebar"] .st-emotion-cache-17l69qg, 
-    [data-testid="stSidebar"] p, 
-    [data-testid="stSidebar"] span,
-    div[role="radiogroup"] label p {
-        color: #000000 !important; 
-        font-weight: 800 !important; 
-        font-size: 18px !important;
+    /* GAYA GAMBAR KETUA PANITIA BULAT */
+    .head-img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        border: 5px solid #ad1457;
+        object-fit: cover;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    /* KESAN HOVER SIDEBAR */
-    div[role="radiogroup"] label { padding: 10px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+    /* SIDEBAR STYLE - PAKSA HITAM */
+    [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
+    [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, div[role="radiogroup"] label p {
+        color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
+    }
     div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; transform: translateX(5px); }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; font-weight: 900 !important; }
 
@@ -71,7 +67,6 @@ st.markdown("""
     
     .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; }
     .stExpander details summary p { color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; }
-    
     .sublink { display: block; padding: 12px; text-decoration: none !important; color: #000000 !important; font-weight: 600; border-radius: 10px; margin: 8px 0; transition: 0.3s; }
     .sublink:hover { background-color: #fce4ec !important; color: #ad1457 !important; transform: translateX(10px); }
     </style>
@@ -101,8 +96,11 @@ if pilihan == "🏠 LAMAN UTAMA":
 # --- 4. LAMAN PANITIA ---
 else:
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
-    
+    KP_IMAGE = None
+
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
+        # URL GAMBAR KP RBT (SUDAH DIPROSES)
+        KP_IMAGE = get_drive_direct_link("https://drive.google.com/file/d/1y7ftH_D52ucbpA4s5iba141527zg9Ez6/view?usp=sharing")
         links.update({
             "Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing",
             "Biodata": "https://docs.google.com/presentation/d/18h4II0zdKX5IEZXhMRlxr89j-4CZdhRLuKdqrcR1118/edit?usp=drive_link",
@@ -125,8 +123,17 @@ else:
             "Bank": "https://drive.google.com/drive/folders/17-cMG1Orr1Q5oxbUBzKShiDSuMDyv8gH?usp=sharing"
         })
 
-    st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:35px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="subject-title-blink">{pilihan}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
+    
+    # SUSUNAN GAMBAR KETUA DAN TAJUK BERSEBELAHAN
+    h_col1, h_col2 = st.columns([1, 4])
+    with h_col1:
+        if KP_IMAGE:
+            st.markdown(f'<div style="text-align: right;"><img src="{KP_IMAGE}" class="head-img"></div>', unsafe_allow_html=True)
+    with h_col2:
+        st.markdown(f'<div class="subject-title-blink">{pilihan}</div>', unsafe_allow_html=True)
+
+    st.divider()
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -156,7 +163,6 @@ else:
         st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div><div class="fail-title">🟢 FAIL D</div>PEPERIKSAAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL D 👇"):
             st.markdown(f'<a class="sublink" href="{links["PBD"]}" target="_blank">📊 Pelaporan PBD & UASA</a>', unsafe_allow_html=True)
-            # PERUBAHAN NAMA DI SINI
             st.markdown(f'<a class="sublink" href="{links["Analisis"]}" target="_blank">📈 Analisis Peperiksaan Awam</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Jadual_E"]}" target="_blank">🕒 Jadual & Penggubal</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["JSU"]}" target="_blank">📑 Analisis Item & JSU</a>', unsafe_allow_html=True)
