@@ -3,9 +3,9 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# LINK GAMBAR (FORMAT UC UNTUK STABILITI)
-LOGO_URL = "https://drive.google.com/uc?id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
-PENTADBIR_URL = "https://drive.google.com/uc?id=1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
+# LINK GAMBAR HD (GUNA FORMAT UC UNTUK STABILITI)
+LOGO_URL = "https://drive.google.com/uc?export=view&id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
+PENTADBIR_URL = "https://drive.google.com/uc?export=view&id=1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
 # --- CUSTOM CSS: KUNCI MATI LAYOUT CANTIK MOON ---
 st.markdown("""
@@ -36,10 +36,10 @@ st.markdown("""
     @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
     /* TAJUK PANITIA */
-    .portal-title-cursive { text-align: center; color: #000000 !important; font-family: 'Pacifico', cursive; font-size: 38px; margin-bottom: 0px; }
+    .portal-title-black { text-align: center; color: #000000 !important; font-family: 'Pacifico', cursive; font-size: 38px; margin-bottom: 0px; }
     .subject-title-pink { text-align: center; color: #ad1457 !important; font-family: 'Arial Black', sans-serif; font-size: 55px; font-weight: 900; text-transform: uppercase; margin-top: -15px; }
 
-    /* KAD FAIL (TULISAN PUTIH - WAJIB) */
+    /* KAD FAIL (TULISAN PUTIH KEMBALI!) */
     .card { 
         border-radius: 20px; padding: 25px; text-align: center; 
         color: #FFFFFF !important; font-weight: bold !important; 
@@ -85,7 +85,7 @@ if pilihan == "🏠 LAMAN UTAMA":
 
 # --- 4. LAMAN PANITIA ---
 else:
-    # DATA PAUTAN UNTUK RBT (SEMUA 19 SUBTOPIK KEMBALI)
+    # DATA PAUTAN UNTUK RBT (SEMUA 19 SUBTOPIK DAH ADA BALIK!)
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
@@ -111,7 +111,7 @@ else:
             "Bank": "https://drive.google.com/drive/folders/17-cMG1Orr1Q5oxbUBzKShiDSuMDyv8gH?usp=sharing"
         })
 
-    st.markdown(f'<div class="portal-title-cursive">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="portal-title-black">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     st.markdown(f'<div class="subject-title-pink">{pilihan}</div>', unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
