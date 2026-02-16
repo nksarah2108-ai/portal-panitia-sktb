@@ -15,44 +15,33 @@ st.markdown("""
     
     .stApp { background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); background-attachment: fixed; }
     
-    /* PAKSA SEMUA KE TENGAH */
     .super-center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; margin: 0 auto; }
     
-    /* TULISAN BERANGKAI BLINK */
-    .cursive-blink { font-family: 'Dancing Script', cursive; font-size: 95px; color: #ad1457; animation: blink 1.5s linear infinite; margin-bottom: 0px; }
-    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    /* ANIMASI BERKELIP (BLINK) */
+    @keyframes blinker {
+        50% { opacity: 0; }
+    }
+
+    /* KELAS KHUSUS UNTUK TAJUK SUBJEK BERKELIP */
+    .subject-title-blink {
+        text-align: center;
+        color: #ad1457;
+        font-size: 55px;
+        font-weight: 900;
+        margin-top: -15px;
+        animation: blinker 1s linear infinite; /* Kelajuan 1 saat */
+    }
+
+    .cursive-blink { font-family: 'Dancing Script', cursive; font-size: 95px; color: #ad1457; animation: blinker 1.5s linear infinite; margin-bottom: 0px; }
     
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 4px; margin-bottom: 30px; }
     
-    /* GAMBAR PENTADBIR */
-    .admin-img-box { width: 100%; max-width: 1000px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-top: 20px; border: 5px solid #ffffff; }
-    
-    /* SIDEBAR STYLE */
+    /* SIDEBAR STYLE & HOVER */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
-    
-    /* KESAN HOVER PADA NAMA SUBJEK DI SIDEBAR */
-    div[role="radiogroup"] label {
-        padding: 10px;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-
-    div[role="radiogroup"] label:hover {
-        background-color: #f8bbd0 !important; /* Warna latar belakang bila hover */
-        transform: translateX(5px); /* Gerak sikit ke kanan */
-    }
-
-    div[role="radiogroup"] label:hover p {
-        color: #ad1457 !important; /* Warna teks jadi maroon bila hover */
-        font-weight: 900 !important;
-    }
-
-    /* LABELS & WIDGETS */
-    [data-testid="stWidgetLabel"] p, .stRadio label p, div[role="radiogroup"] span {
-        color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
-    }
+    div[role="radiogroup"] label { padding: 10px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+    div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; transform: translateX(5px); }
+    div[role="radiogroup"] label:hover p { color: #ad1457 !important; font-weight: 900 !important; }
 
     /* KAD FAIL */
     .card { border-radius: 20px; padding: 25px; text-align: center; color: #FFFFFF !important; font-weight: bold !important; height: 180px; display: flex; flex-direction: column; justify-content: center; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -96,29 +85,34 @@ if pilihan == "🏠 LAMAN UTAMA":
 else:
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
+    # PAUTAN RBT
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        links["Carta"] = "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing"
-        links["Biodata"] = "https://docs.google.com/presentation/d/18h4II0zdKX5IEZXhMRlxr89j-4CZdhRLuKdqrcR1118/edit?usp=drive_link"
-        links["Jadual_M"] = "https://docs.google.com/presentation/d/1vx4yASQI69Dw3WgLbHdLLIi6y6Uvwqx_cPR7jDpnEf4/edit?usp=sharing"
-        links["Enrolmen"] = "https://docs.google.com/spreadsheets/d/1lQLHlLLklHhZpKaVTs0D5C7PGaJOvo9g/edit?usp=drive_link&ouid=112608544624576084711&rtpof=true&sd=true"
-        links["Kewangan"] = "https://docs.google.com/spreadsheets/d/1DdzyEc8c0OnEY6KN9LPWsYkpdNJcBDr7oZzLLo1_9mc/edit?usp=sharing"
-        links["Minit"] = "https://drive.google.com/drive/folders/1KfhRHblLKPyn9VFLq0bwBEgeVPq_9PLP?usp=sharing"
-        links["DSKP"] = "https://drive.google.com/drive/folders/15v24g0l9KulIq14F6pwwn-I1naMaO-0S?usp=sharing"
-        links["Manual"] = "https://drive.google.com/drive/folders/1__aMuk0rjNRJIPgUAHhBgCYmNRpOuInJ?usp=sharing"
-        links["BBM"] = "https://drive.google.com/drive/folders/1AsgXDpVbDMTBOEknbRn-70czAZVUXHVJ?usp=sharing"
-        links["RPT"] = "https://drive.google.com/drive/folders/13ONhdCcHDgjo-pMYoMtyQUKqQc3XFGGh?usp=drive_link"
-        links["Akademik"] = "https://docs.google.com/presentation/d/1W_pVK4kuv4XHzJrm8Vi6IPjnqhfo7xXSVUo7n54Vflc/edit?usp=sharing"
-        links["Gantt"] = "https://drive.google.com/file/d/1POSqk4gZVQ3JuFhwSHmiZBezOGK0tiRr/view?usp=sharing"
-        links["Laporan"] = "https://drive.google.com/drive/folders/1VidiLz-pZ3WJj29p13BrVXFHly6IShKc?usp=drive_link"
-        links["PLC"] = "https://drive.google.com/drive/folders/1NwX9c5l7SDRPNVa3UKzz1LX1s-Ic3Ghc?usp=sharing"
-        links["PBD"] = "https://drive.google.com/drive/folders/1sUR2Sq6fWbZk1gGveuRX935pqWkmUIgx?usp=sharing"
-        links["Analisis"] = "https://drive.google.com/drive/folders/1aJspYVKRdzMMpNsYtRA1SjEOKSeWoka8?usp=drive_link"
-        links["Jadual_E"] = "https://drive.google.com/drive/folders/17doEPe67XPYLNcSqS-d-aGtCXjMddiDj?usp=sharing"
-        links["JSU"] = "https://drive.google.com/drive/folders/17swAo8ZjS9HPE1N1xNTyi9Lfw2LRzc15?usp=sharing"
-        links["Bank"] = "https://drive.google.com/drive/folders/17-cMG1Orr1Q5oxbUBzKShiDSuMDyv8gH?usp=sharing"
+        links.update({
+            "Carta": "https://docs.google.com/presentation/d/1b76mhH6fqiZSt48ARdrNyJulunexr_u7PZj4AFoq_Gc/edit?usp=sharing",
+            "Biodata": "https://docs.google.com/presentation/d/18h4II0zdKX5IEZXhMRlxr89j-4CZdhRLuKdqrcR1118/edit?usp=drive_link",
+            "Jadual_M": "https://docs.google.com/presentation/d/1vx4yASQI69Dw3WgLbHdLLIi6y6Uvwqx_cPR7jDpnEf4/edit?usp=sharing",
+            "Enrolmen": "https://docs.google.com/spreadsheets/d/1lQLHlLLklHhZpKaVTs0D5C7PGaJOvo9g/edit?usp=drive_link",
+            "Kewangan": "https://docs.google.com/spreadsheets/d/1DdzyEc8c0OnEY6KN9LPWsYkpdNJcBDr7oZzLLo1_9mc/edit?usp=sharing",
+            "Minit": "https://drive.google.com/drive/folders/1KfhRHblLKPyn9VFLq0bwBEgeVPq_9PLP?usp=sharing",
+            "DSKP": "https://drive.google.com/drive/folders/15v24g0l9KulIq14F6pwwn-I1naMaO-0S?usp=sharing",
+            "Manual": "https://drive.google.com/drive/folders/1__aMuk0rjNRJIPgUAHhBgCYmNRpOuInJ?usp=sharing",
+            "BBM": "https://drive.google.com/drive/folders/1AsgXDpVbDMTBOEknbRn-70czAZVUXHVJ?usp=sharing",
+            "RPT": "https://drive.google.com/drive/folders/13ONhdCcHDgjo-pMYoMtyQUKqQc3XFGGh?usp=drive_link",
+            "Akademik": "https://docs.google.com/presentation/d/1W_pVK4kuv4XHzJrm8Vi6IPjnqhfo7xXSVUo7n54Vflc/edit?usp=sharing",
+            "Gantt": "https://drive.google.com/file/d/1POSqk4gZVQ3JuFhwSHmiZBezOGK0tiRr/view?usp=sharing",
+            "Laporan": "https://drive.google.com/drive/folders/1VidiLz-pZ3WJj29p13BrVXFHly6IShKc?usp=drive_link",
+            "PLC": "https://drive.google.com/drive/folders/1NwX9c5l7SDRPNVa3UKzz1LX1s-Ic3Ghc?usp=sharing",
+            "PBD": "https://drive.google.com/drive/folders/1sUR2Sq6fWbZk1gGveuRX935pqWkmUIgx?usp=sharing",
+            "Analisis": "https://drive.google.com/drive/folders/1aJspYVKRdzMMpNsYtRA1SjEOKSeWoka8?usp=drive_link",
+            "Jadual_E": "https://drive.google.com/drive/folders/17doEPe67XPYLNcSqS-d-aGtCXjMddiDj?usp=sharing",
+            "JSU": "https://drive.google.com/drive/folders/17swAo8ZjS9HPE1N1xNTyi9Lfw2LRzc15?usp=sharing",
+            "Bank": "https://drive.google.com/drive/folders/17-cMG1Orr1Q5oxbUBzKShiDSuMDyv8gH?usp=sharing"
+        })
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:35px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
-    st.markdown(f'<div style="text-align:center; color:#ad1457; font-size:55px; font-weight:900; margin-top:-15px;">{pilihan}</div>', unsafe_allow_html=True)
+    
+    # TAJUK SUBJEK BERKELIP DI SINI
+    st.markdown(f'<div class="subject-title-blink">{pilihan}</div>', unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
