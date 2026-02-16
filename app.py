@@ -17,36 +17,47 @@ st.markdown("""
     
     .super-center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; margin: 0 auto; }
     
-    /* ANIMASI BERKELIP (BLINK) YANG LEBIH PERLAHAN */
+    /* ANIMASI BERKELIP (BLINK) */
     @keyframes blinker {
         0% { opacity: 1; }
         50% { opacity: 0.2; }
         100% { opacity: 1; }
     }
 
-    /* KELAS KHUSUS UNTUK TAJUK SUBJEK - KELAJUAN DITETAPKAN PADA 3 SAAT */
     .subject-title-blink {
         text-align: center;
         color: #ad1457;
         font-size: 55px;
         font-weight: 900;
         margin-top: -15px;
-        animation: blinker 3s linear infinite; /* Diubah dari 1s ke 3s supaya lebih perlahan */
+        animation: blinker 3s linear infinite;
     }
 
     .cursive-blink { 
         font-family: 'Dancing Script', cursive; 
         font-size: 95px; 
         color: #ad1457; 
-        animation: blinker 3s linear infinite; /* Perlahankan juga di Laman Utama */
+        animation: blinker 3s linear infinite;
         margin-bottom: 0px; 
     }
     
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 4px; margin-bottom: 30px; }
     
-    /* SIDEBAR STYLE & HOVER */
+    /* SIDEBAR STYLE */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
+    
+    /* FIX: PAKSA TULISAN SIDEBAR KEKAL HITAM */
+    [data-testid="stSidebar"] .st-emotion-cache-17l69qg, 
+    [data-testid="stSidebar"] p, 
+    [data-testid="stSidebar"] span,
+    div[role="radiogroup"] label p {
+        color: #000000 !important; 
+        font-weight: 800 !important; 
+        font-size: 18px !important;
+    }
+
+    /* KESAN HOVER PADA SIDEBAR */
     div[role="radiogroup"] label { padding: 10px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
     div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; transform: translateX(5px); }
     div[role="radiogroup"] label:hover p { color: #ad1457 !important; font-weight: 900 !important; }
