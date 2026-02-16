@@ -7,10 +7,9 @@ st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 LOGO_URL = "https://lh3.googleusercontent.com/d/1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 PENTADBIR_URL = "https://lh3.googleusercontent.com/d/1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
-# --- FUNGSI FIX LINK GOOGLE DRIVE (PENTING!) ---
+# --- FUNGSI FIX LINK GOOGLE DRIVE ---
 def fix_drive_url(url):
     if "drive.google.com" in url:
-        # Mengambil ID fail dari URL Drive
         try:
             if "/file/d/" in url:
                 file_id = url.split("/file/d/")[1].split("/")[0]
@@ -18,7 +17,7 @@ def fix_drive_url(url):
                 file_id = url.split("id=")[1].split("&")[0]
             else:
                 return url
-            return f"https://lh3.googleusercontent.com/u/0/d/{file_id}"
+            return f"https://drive.google.com/uc?export=view&id={file_id}"
         except:
             return url
     return url
@@ -40,7 +39,7 @@ st.markdown("""
         font-weight: 900;
         animation: blinker 3s linear infinite;
         line-height: 1.2;
-        margin-top: 15px;
+        margin-top: 25px;
         text-align: left;
     }
 
@@ -48,7 +47,7 @@ st.markdown("""
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; }
     
-    /* GAYA GAMBAR KETUA PANITIA */
+    /* FIX: GAYA GAMBAR KETUA PANITIA PENUH BULATAN */
     .head-img-container {
         display: flex;
         justify-content: flex-end;
@@ -57,11 +56,15 @@ st.markdown("""
     }
     
     .head-img {
-        width: 150px;
-        height: 150px;
+        width: 170px; /* Saiz bulatan */
+        height: 170px;
         border-radius: 50%;
         border: 6px solid #ad1457;
-        object-fit: cover;
+        object-fit: cover; /* Memastikan gambar memenuhi ruang bulatan */
+        object-position: center;
+        display: block;
+        padding: 0px !important; /* Membuang ruang kosong di dalam */
+        margin: 0px !important;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
@@ -116,7 +119,6 @@ else:
     KP_IMAGE_URL = None
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        # MASUKKAN LINK DRIVE KP RBT DI SINI
         raw_url = "https://drive.google.com/file/d/1y7ftH_D52ucbpA4s5iba141527zg9Ez6/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url)
         
@@ -144,7 +146,7 @@ else:
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     
-    # SUSUNAN GAMBAR KETUA DAN TAJUK
+    # SUSUNAN GAMBAR DAN TAJUK
     h_col1, h_col2 = st.columns([1.5, 3.5])
     with h_col1:
         if KP_IMAGE_URL:
