@@ -3,7 +3,7 @@ import streamlit as st
 # 1. KONFIGURASI HALAMAN
 st.set_page_config(page_title="Portal Panitia SKTB", layout="wide")
 
-# LINK GAMBAR HD (GUNA FORMAT UC UNTUK STABILITI)
+# LINK GAMBAR HD (FORMAT UC UNTUK STABILITI)
 LOGO_URL = "https://drive.google.com/uc?export=view&id=1XV1CIEWhms8jHqJGOKpSluqr7cxtSWrv"
 PENTADBIR_URL = "https://drive.google.com/uc?export=view&id=1m87eH4bQ-p51DCMVjvM2ID8QgtwNF9ul"
 
@@ -71,7 +71,7 @@ with st.sidebar:
         ["🏠 LAMAN UTAMA", "REKA BENTUK DAN TEKNOLOGI", "BAHASA MELAYU", "BAHASA INGGERIS", "MATEMATIK", "SAINS", "PENDIDIKAN ISLAM", "SEJARAH", "PENDIDIKAN JASMANI DAN KESIHATAN", "PENDIDIKAN SENI VISUAL", "PENDIDIKAN MUZIK", "BAHASA ARAB"]
     )
 
-# --- 3. LAMAN UTAMA (MUKA DEPAN) ---
+# --- 3. LAMAN UTAMA ---
 if pilihan == "🏠 LAMAN UTAMA":
     st.markdown(f"""
         <div class="center-wrapper">
@@ -85,7 +85,7 @@ if pilihan == "🏠 LAMAN UTAMA":
 
 # --- 4. LAMAN PANITIA ---
 else:
-    # KEKALKAN SEMUA LINK SUBTOPIK
+    # DATA PAUTAN UNTUK RBT
     links = {k: "#" for k in ["Carta", "Biodata", "Jadual_M", "Enrolmen", "Kewangan", "Minit", "DSKP", "Manual", "BBM", "RPT", "Akademik", "Gantt", "Laporan", "PLC", "PBD", "Analisis", "Jadual_E", "JSU", "Bank"]}
     
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
