@@ -133,9 +133,25 @@ else:
         KP_IMAGE_URL = fix_drive_url(raw_url_pi)
 
     elif pilihan == "SEJARAH":
-        # --- URL KETUA PANITIA SEJARAH ---
         raw_url_sj = "https://drive.google.com/file/d/1pFUbxnxTHe8mOMqYKjTanIT4mmHKIJlj/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_sj)
+
+    elif pilihan == "PENDIDIKAN JASMANI DAN KESIHATAN":
+        raw_url_pjk = "https://drive.google.com/file/d/1OMLU8ZlT2EPePvpetyorgE7j0XQNHhuH/view?usp=sharing"
+        KP_IMAGE_URL = fix_drive_url(raw_url_pjk)
+
+    elif pilihan == "PENDIDIKAN SENI VISUAL":
+        raw_url_psv = "https://drive.google.com/file/d/13AiJ6tAqcCrljA3RKj8HcMeV2mjjMZZX/view?usp=sharing"
+        KP_IMAGE_URL = fix_drive_url(raw_url_psv)
+
+    elif pilihan == "PENDIDIKAN MUZIK":
+        raw_url_muzik = "https://drive.google.com/file/d/1fXrKM-QEjA8CqFIEtnz9ESx88HzMBqpe/view?usp=sharing"
+        KP_IMAGE_URL = fix_drive_url(raw_url_muzik)
+
+    elif pilihan == "BAHASA ARAB":
+        # --- URL KETUA PANITIA BAHASA ARAB ---
+        raw_url_ba = "https://drive.google.com/file/d/1z2JnCTdprivWuohsfIzvgo7WTvsmrRa5/view?usp=sharing"
+        KP_IMAGE_URL = fix_drive_url(raw_url_ba)
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     
