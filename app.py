@@ -109,14 +109,17 @@ else:
     KP_IMAGE_URL = None
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        # --- URL KETUA PANITIA RBT YANG BARU ---
         raw_url_rbt = "https://drive.google.com/file/d/11avGiH5w__vXztmo0sjltE46kYgCnNuN/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_rbt)
 
     elif pilihan == "BAHASA MELAYU":
-        # --- URL KETUA PANITIA BM ---
         raw_url_bm = "https://drive.google.com/file/d/1dysRv55eRjKnGA3ACWUaJvfZXU6GMajL/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_bm)
+
+    elif pilihan == "BAHASA INGGERIS":
+        # --- URL KETUA PANITIA BI ---
+        raw_url_bi = "https://drive.google.com/file/d/1OSPkh5undB9H1PVTWNVPAzEk3DnFXuj2/view?usp=sharing"
+        KP_IMAGE_URL = fix_drive_url(raw_url_bi)
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     
