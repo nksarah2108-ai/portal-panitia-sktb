@@ -116,7 +116,7 @@ else:
     KP_IMAGE_URL = None
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        # --- URL GAMBAR BARU DENGAN BACKGROUND PINK ---
+        # --- URL GAMBAR BARU YANG TELAH DIKEMASKINI ---
         raw_url = "https://drive.google.com/file/d/1ud6j-u5mxizea8z4rhonnPklDqT09rPa/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url)
         
