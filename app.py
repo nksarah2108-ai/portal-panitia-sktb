@@ -59,14 +59,43 @@ st.markdown("""
         height: 180px;
         border-radius: 50%;
         border: 6px solid #ad1457;
-        background-color: #fce4ec; /* WARNA BULATAN DI BELAKANG GAMBAR */
+        background-color: #fce4ec; 
         object-fit: cover;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
+    /* SIDEBAR STYLE & HOVER EFFECT */
+    [data-testid="stSidebar"] { 
+        background-color: #fce4ec !important; 
+        border-right: 2px solid #f8bbd0; 
+    }
+    
+    /* Gaya teks asal di sidebar */
     [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, div[role="radiogroup"] label p {
-        color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
+        color: #000000 !important; 
+        font-weight: 800 !important; 
+        font-size: 16px !important;
+        transition: all 0.3s ease; /* Kesan transisi yang lembut */
+    }
+
+    /* KESAN HOVER PADA NAMA SUBJEK */
+    div[role="radiogroup"] label {
+        padding: 10px !important;
+        border-radius: 10px !important;
+        margin-bottom: 5px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    div[role="radiogroup"] label:hover {
+        background-color: #f8bbd0 !important; /* Warna pink bila hover */
+        transform: translateX(10px); /* Gerak ke kanan sedikit */
+        cursor: pointer;
+    }
+
+    div[role="radiogroup"] label:hover p {
+        color: #ad1457 !important; /* Warna teks tukar merah gelap */
+        font-weight: 900 !important;
+        font-size: 17px !important;
     }
 
     .card { border-radius: 20px; padding: 25px; text-align: center; color: #FFFFFF !important; font-weight: bold !important; height: 180px; display: flex; flex-direction: column; justify-content: center; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -111,45 +140,34 @@ else:
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
         raw_url_rbt = "https://drive.google.com/file/d/11avGiH5w__vXztmo0sjltE46kYgCnNuN/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_rbt)
-
     elif pilihan == "BAHASA MELAYU":
         raw_url_bm = "https://drive.google.com/file/d/1dysRv55eRjKnGA3ACWUaJvfZXU6GMajL/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_bm)
-
     elif pilihan == "BAHASA INGGERIS":
         raw_url_bi = "https://drive.google.com/file/d/1OSPkh5undB9H1PVTWNVPAzEk3DnFXuj2/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_bi)
-
     elif pilihan == "MATEMATIK":
         raw_url_mt = "https://drive.google.com/file/d/1edxg1ICltkj3mLqYrpSsdlxl1ZbyP8nC/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_mt)
-
     elif pilihan == "SAINS":
         raw_url_sn = "https://drive.google.com/file/d/1g8cmxSC8Ibcq2bTHaULHzi4lF_ovgQT_/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_sn)
-
     elif pilihan == "PENDIDIKAN ISLAM":
         raw_url_pi = "https://drive.google.com/file/d/1ghBqi3co12tnWAaJtEpcD_1Spa7vdiUk/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_pi)
-
     elif pilihan == "SEJARAH":
         raw_url_sj = "https://drive.google.com/file/d/1pFUbxnxTHe8mOMqYKjTanIT4mmHKIJlj/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_sj)
-
     elif pilihan == "PENDIDIKAN JASMANI DAN KESIHATAN":
         raw_url_pjk = "https://drive.google.com/file/d/1OMLU8ZlT2EPePvpetyorgE7j0XQNHhuH/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_pjk)
-
     elif pilihan == "PENDIDIKAN SENI VISUAL":
         raw_url_psv = "https://drive.google.com/file/d/13AiJ6tAqcCrljA3RKj8HcMeV2mjjMZZX/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_psv)
-
     elif pilihan == "PENDIDIKAN MUZIK":
         raw_url_muzik = "https://drive.google.com/file/d/1fXrKM-QEjA8CqFIEtnz9ESx88HzMBqpe/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_muzik)
-
     elif pilihan == "BAHASA ARAB":
-        # --- URL KETUA PANITIA BAHASA ARAB ---
         raw_url_ba = "https://drive.google.com/file/d/1z2JnCTdprivWuohsfIzvgo7WTvsmrRa5/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_ba)
 
@@ -166,7 +184,7 @@ else:
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.markdown('<div class="card color-a"><div class="ref-no">600-4/1/2/1</div><div class="fail-title">🔵 FAIL A</div>MAKLUMAT PANITIA</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-a"><div class="fail-title">🔵 FAIL A</div>MAKLUMAT PANITIA</div>', unsafe_allow_html=True)
         with st.expander("FAIL A 👇"):
             st.markdown(f'<a class="sublink" href="{links["Carta"]}" target="_blank">👤 Carta Organisasi</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Biodata"]}" target="_blank">📋 Biodata & Jadual Guru</a>', unsafe_allow_html=True)
@@ -175,7 +193,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["Kewangan"]}" target="_blank">💰 Pengurusan Kewangan</a>', unsafe_allow_html=True)
     
     with col2:
-        st.markdown('<div class="card color-b"><div class="ref-no">600-4/1/2/2</div><div class="fail-title">🟠 FAIL B</div>KURIKULUM</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-b"><div class="fail-title">🟠 FAIL B</div>KURIKULUM</div>', unsafe_allow_html=True)
         with st.expander("FAIL B 👇"):
             st.markdown(f'<a class="sublink" href="{links["Minit"]}" target="_blank">📖 Minit Mesyuarat</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["DSKP"]}" target="_blank">📜 DSKP</a>', unsafe_allow_html=True)
@@ -183,7 +201,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["BBM"]}" target="_blank">📦 BBM</a>', unsafe_allow_html=True)
 
     with col3:
-        st.markdown('<div class="card color-c"><div class="ref-no">600-4/1/2/3</div><div class="fail-title">🟣 FAIL C</div>PERANCANGAN</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-c"><div class="fail-title">🟣 FAIL C</div>PERANCANGAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL C 👇"):
             st.markdown(f'<a class="sublink" href="{links["RPT"]}" target="_blank">📅 RPT & RPH</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Akademik"]}" target="_blank">🏆 Peningkatan Akademik</a>', unsafe_allow_html=True)
@@ -192,7 +210,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["PLC"]}" target="_blank">🤝 LDP / PLC</a>', unsafe_allow_html=True)
 
     with col4:
-        st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div><div class="fail-title">🟢 FAIL D</div>PEPERIKSAAN</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card color-d"><div class="fail-title">🟢 FAIL D</div>PEPERIKSAAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL D 👇"):
             st.markdown(f'<a class="sublink" href="{links["PBD"]}" target="_blank">📊 Pelaporan PBD & UASA</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Analisis"]}" target="_blank">📈 Analisis Peperiksaan Awam</a>', unsafe_allow_html=True)
