@@ -47,7 +47,6 @@ st.markdown("""
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; }
     
-    /* GAYA GAMBAR KETUA PANITIA DENGAN BACKGROUND #FCE4EC */
     .head-img-container {
         display: flex;
         justify-content: flex-end;
@@ -110,14 +109,14 @@ else:
     KP_IMAGE_URL = None
 
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
-        raw_url = "https://drive.google.com/file/d/1ud6j-u5mxizea8z4rhonnPklDqT09rPa/view?usp=sharing"
-        KP_IMAGE_URL = fix_drive_url(raw_url)
-        # Tambahkan pautan khusus RBT di sini jika ada
+        # --- URL KETUA PANITIA RBT YANG BARU ---
+        raw_url_rbt = "https://drive.google.com/file/d/11avGiH5w__vXztmo0sjltE46kYgCnNuN/view?usp=sharing"
+        KP_IMAGE_URL = fix_drive_url(raw_url_rbt)
 
     elif pilihan == "BAHASA MELAYU":
+        # --- URL KETUA PANITIA BM ---
         raw_url_bm = "https://drive.google.com/file/d/1dysRv55eRjKnGA3ACWUaJvfZXU6GMajL/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_bm)
-        # Tambahkan pautan khusus BM di sini jika ada
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     
