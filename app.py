@@ -17,7 +17,6 @@ def fix_drive_url(url):
                 file_id = url.split("id=")[1].split("&")[0]
             else:
                 return url
-            # Menggunakan endpoint thumbnail untuk paparan imej yang stabil di Streamlit
             return f"https://drive.google.com/thumbnail?id={file_id}&sz=w800"
         except:
             return url
@@ -48,7 +47,7 @@ st.markdown("""
     .portal-text { color: #000000 !important; font-size: 38px; font-weight: 800; margin-top: 10px; }
     .year-text { color: #ad1457; font-size: 45px; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; }
     
-    /* GAYA GAMBAR KETUA PANITIA */
+    /* GAYA GAMBAR KETUA PANITIA DENGAN BACKGROUND #FCE4EC */
     .head-img-container {
         display: flex;
         justify-content: flex-end;
@@ -61,26 +60,21 @@ st.markdown("""
         height: 180px;
         border-radius: 50%;
         border: 6px solid #ad1457;
+        background-color: #fce4ec; /* WARNA BULATAN DI BELAKANG GAMBAR */
         object-fit: cover;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    /* SIDEBAR STYLE */
     [data-testid="stSidebar"] { background-color: #fce4ec !important; border-right: 2px solid #f8bbd0; }
     [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, div[role="radiogroup"] label p {
         color: #000000 !important; font-weight: 800 !important; font-size: 18px !important;
     }
-    div[role="radiogroup"] label:hover { background-color: #f8bbd0 !important; transform: translateX(5px); }
-    div[role="radiogroup"] label:hover p { color: #ad1457 !important; font-weight: 900 !important; }
 
-    /* KAD FAIL */
     .card { border-radius: 20px; padding: 25px; text-align: center; color: #FFFFFF !important; font-weight: bold !important; height: 180px; display: flex; flex-direction: column; justify-content: center; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
     .color-a { background: linear-gradient(135deg, #008B8B, #20B2AA); }
     .color-b { background: linear-gradient(135deg, #FF8C00, #FFA500); }
     .color-c { background: linear-gradient(135deg, #800080, #9370DB); }
     .color-d { background: linear-gradient(135deg, #2E8B57, #3CB371); }
-    .ref-no { font-size: 13px; color: #FFFFFF !important; margin-bottom: 5px; font-weight: 800; }
-    .fail-title { font-size: 22px; color: #FFFFFF !important; font-weight: 900; }
     
     .stExpander { background-color: #AED6F1 !important; border-radius: 12px !important; }
     .stExpander details summary p { color: #008080 !important; font-weight: 900; font-size: 22px; font-style: italic; }
@@ -118,13 +112,12 @@ else:
     if pilihan == "REKA BENTUK DAN TEKNOLOGI":
         raw_url = "https://drive.google.com/file/d/1ud6j-u5mxizea8z4rhonnPklDqT09rPa/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url)
-        # (Sila masukkan pautan links anda di sini jika perlu)
+        # Tambahkan pautan khusus RBT di sini jika ada
 
     elif pilihan == "BAHASA MELAYU":
-        # --- URL GAMBAR BARU UNTUK KP BAHASA MELAYU ---
         raw_url_bm = "https://drive.google.com/file/d/1dysRv55eRjKnGA3ACWUaJvfZXU6GMajL/view?usp=sharing"
         KP_IMAGE_URL = fix_drive_url(raw_url_bm)
-        # (Sila masukkan pautan links anda untuk BM di sini jika perlu)
+        # Tambahkan pautan khusus BM di sini jika ada
 
     st.markdown(f'<div style="text-align:center; color:black; font-family:Pacifico; font-size:30px; margin-bottom:10px;">📂 Portal Fail Digital Pengurusan Panitia</div>', unsafe_allow_html=True)
     
@@ -146,6 +139,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["Jadual_M"]}" target="_blank">📅 Jadual Pemantauan</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Enrolmen"]}" target="_blank">👥 Data Enrolmen</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Kewangan"]}" target="_blank">💰 Pengurusan Kewangan</a>', unsafe_allow_html=True)
+    
     with col2:
         st.markdown('<div class="card color-b"><div class="ref-no">600-4/1/2/2</div><div class="fail-title">🟠 FAIL B</div>KURIKULUM</div>', unsafe_allow_html=True)
         with st.expander("FAIL B 👇"):
@@ -153,6 +147,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["DSKP"]}" target="_blank">📜 DSKP</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Manual"]}" target="_blank">📘 Manual & Modul</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["BBM"]}" target="_blank">📦 BBM</a>', unsafe_allow_html=True)
+
     with col3:
         st.markdown('<div class="card color-c"><div class="ref-no">600-4/1/2/3</div><div class="fail-title">🟣 FAIL C</div>PERANCANGAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL C 👇"):
@@ -161,6 +156,7 @@ else:
             st.markdown(f'<a class="sublink" href="{links["Gantt"]}" target="_blank">📊 Carta Gantt</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["Laporan"]}" target="_blank">📝 Laporan Program</a>', unsafe_allow_html=True)
             st.markdown(f'<a class="sublink" href="{links["PLC"]}" target="_blank">🤝 LDP / PLC</a>', unsafe_allow_html=True)
+
     with col4:
         st.markdown('<div class="card color-d"><div class="ref-no">600-4/1/2/4</div><div class="fail-title">🟢 FAIL D</div>PEPERIKSAAN</div>', unsafe_allow_html=True)
         with st.expander("FAIL D 👇"):
